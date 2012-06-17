@@ -1,14 +1,14 @@
 require 'mime/types'
 class Photo < ActiveRecord::Base
   has_attached_file :photo,
-#    :path => ":rails_root/public/system/:attachment/:id.:extension", ## attachementがphoto, idが勝手につく
-#    :url => "/system/:attachment/:id.:extension",
 	:styles => {
 	   :large => "800x800>", 
        :thumb=> "100x100#",
-       :small  => "400x400>" }
-	validates_attachment_presence :photo 
-	validates_attachment_size :photo, :less_than => 2.megabytes  
+       :small  => "400x400>" },
+    :url => "/system/pict_share/album_id/:attachment/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/system/pict_share/album_id/:attachment/:id/:style/:basename.:extension" ## attachementがphoto, idが勝手につく
+	validates_attachment_presence :photo
+#	validates_attachment_size :photo, :less_than => 2.megabytes  
 #	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] ## うまく動かない
 
   def uploaded_file=(file_data)
