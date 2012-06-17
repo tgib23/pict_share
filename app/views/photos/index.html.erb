@@ -1,15 +1,19 @@
 <h1>Photos</h1>
+
+<center>
 <div class="flexslider">
   <ul class="slides">
 	<% @photos.each do |photo| %>
 	  <li>
-	    <%= image_tag photo.photo.url %>
+	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
 	  </li>
 	<% end %>
  </ul>
 </div>
 
+<br /><br /><br /><br /><br />
 <input type="file" name="uploadify" id="uploadify" />
+<center>
 <div id="file_queue"></div>
 <%= javascript_include_tag 'swfobject' %>
 <%= javascript_include_tag 'jquery.uploadify.v2.1.0.min' %>
