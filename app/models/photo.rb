@@ -10,7 +10,7 @@ class Photo < ActiveRecord::Base
 	validates_attachment_presence :photo
 #	validates_attachment_size :photo, :less_than => 2.megabytes  
 #	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] ## うまく動かない
-
+# this add_album branch
   def uploaded_file=(file_data)
     file_data.content_type = MIME::Types.type_for(file_data.original_filename).to_s
     self.photo = file_data
