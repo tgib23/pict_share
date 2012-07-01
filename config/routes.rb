@@ -1,4 +1,6 @@
 PicShare::Application.routes.draw do
+  resources :albums
+
 #  get "photos/index"
 
 #  get "photos/create"
