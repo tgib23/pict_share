@@ -4,7 +4,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.new(:uploaded_file => params[:Filedata], album_id => :album_id)
+    photo = Photo.new(:uploaded_file => params[:Filedata], :album_id => params[:aid])
+#    photo = Photo.new(:uploaded_file => params[:Filedata], :album_id => 1)
+#    photo = Photo.new(:uploaded_file => params[:Filedata])
     if photo.save
       render :json => {"status" => "OK"}
     else

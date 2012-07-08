@@ -19,11 +19,14 @@
 <h1>Photos</h1>
 
 <center>
+<%= @album.id %>
+
 <div class="flexslider">
   <ul class="slides">
 	<% @album.photos.each do |photo| %>
 	  <li>
-	    <%= link_to image_tag(album.photo.url(:large)), album.photo.url(:original) %>
+	    test 
+	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
 	  </li>
 	<% end %>
  </ul>
@@ -32,6 +35,7 @@
 <%= @album.photos.count %>
 <br /><br /><br /><br /><br />
 <input type="file" name="uploadify" id="uploadify" />
+<input type="hidden" name="aid" value="<%= @album.id %>" />
 <center>
 <div id="file_queue"></div>
 <%= javascript_include_tag 'swfobject' %>
@@ -51,6 +55,7 @@ $(function() {
  'multi'          : true,
  'scriptData'     : {
    '_method'            : 'post',
+   'aid'                : '<%= @album.id %>',
    '<%= session_key %>' : encodeURIComponent('<%=u cookies["_session_id"] %>'),
    'authenticity_token' : encodeURIComponent('<%=u form_authenticity_token %>')
  }
