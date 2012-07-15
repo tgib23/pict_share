@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: albums
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  content    :text
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+
 require 'mime/types'
 class Album < ActiveRecord::Base
 	attr_accessible :name, :content, :photos_attributes, :uploaded_file
