@@ -1,7 +1,7 @@
 PicShare::Application.routes.draw do
-  get "users/new"
 
-  resources :albums
+  resources :users, :albums
+   match '/signup',  to: 'users#new'
 
 #  get "photos/index"
 

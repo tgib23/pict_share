@@ -10,7 +10,7 @@ gem 'paperclip'
 gem 'mime-types'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.0.0'
-gem 'bcrypt-ruby', '3.0.1'
+#gem 'bcrypt-ruby', '3.0.1'
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
 
@@ -29,7 +29,7 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
