@@ -1,5 +1,4 @@
 PicShare::Application.routes.draw do
-  root :to => 'users#new'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, :albums
@@ -11,6 +10,7 @@ PicShare::Application.routes.draw do
 
 #  get "photos/create"
 resources :photos,:only => [:index, :create]
+  root :to => 'users#index'
 
 
   # The priority is based upon order of creation:
