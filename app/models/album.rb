@@ -7,13 +7,21 @@
 #  content    :text
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  user_id    :integer
 #
 
 require 'mime/types'
 class Album < ActiveRecord::Base
-	attr_accessible :name, :content, :photos_attributes, :uploaded_file
+	attr_accessible :name, :content, :photos_attributes, :uploaded_file, :revision
+	belongs_to :user
+	validates :user_id, presence: true
 	has_many :photos
 	accepts_nested_attributes_for :photos, :allow_destroy => true
+	
+  def increment_revision
+    tmp = self.revision.to_i + 1
+	self.revision = tmp
+  end
 
 #  	has_attached_file :photo,
 #  	  :styles => {

@@ -15,5 +15,12 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+	users = User.all(limit: 6)
+	2.times do
+	  name = "test name"
+	  content = "test content"
+	  users.each { |user| user.albums.create!(name: name, content: content) }
+	end
   end
 end

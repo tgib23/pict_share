@@ -1,0 +1,8 @@
+<%= form_for(@new_album) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "new album title here" %>
+    <%= f.text_area :content, placeholder: "new album explanation..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

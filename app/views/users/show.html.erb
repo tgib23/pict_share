@@ -8,4 +8,24 @@
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.albums.any? %>
+      <h3>Albums (<%= @user.albums.count %>)</h3>
+      <ol class="albums">
+        <%= render @albums %>
+      </ol>
+      <%= will_paginate @albums %>
+    <% end %>
+  </div>
 </div>
+
+<% if signed_in? %>
+  <section>
+    <%= render 'shared/album_form' %>
+  </section>
+<% else %>
+  <div class="center hero-unit">
+    <%= link_to "Sign up now!", signup_path,
+						class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

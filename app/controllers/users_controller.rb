@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+	@albums = @user.albums.paginate(page: params[:page])
+	@new_album = current_user.albums.build if signed_in?
   end
 
   def index
@@ -46,12 +48,6 @@ class UsersController < ApplicationController
   end
 
   private
-    def signed_in_user
-	  unless signed_in?
-	    store_location
-	    redirect_to signin_path, notice: "Please sign in."
-	  end
-	end
 
 	def correct_user
 	  @user = User.find(params[:id])

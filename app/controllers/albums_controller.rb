@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_filter :signed_in_user, only: [:create, :destroy]
   # GET /albums
   # GET /albums.json
   def index
@@ -41,12 +42,15 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(params[:album])
+#    @album = Album.new(params[:album])
+	@album = current_user.albums.build(params[:album])
+	@album.revision = 0
 
     respond_to do |format|
       if @album.save
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
+		`touch /tmp/album_make`
       else
         format.html { render action: "new" }
         format.json { render json: @album.errors, status: :unprocessable_entity }
