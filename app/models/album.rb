@@ -12,9 +12,14 @@
 
 require 'mime/types'
 class Album < ActiveRecord::Base
-	attr_accessible :name, :content, :photos_attributes, :uploaded_file, :revision
+	attr_accessible :name, :content, :photos_attributes, :uploaded_file, :revision, :password, :password_confirmation, :ncc
+	has_secure_password
 	belongs_to :user
+	before_save :create_remember_a_token
 	validates :user_id, presence: true
+	validates :name, presence: true, length: {maximum: 50}
+	validates :password, presence: true
+	validates :password_confirmation, presence: true
 	has_many :photos
 	accepts_nested_attributes_for :photos, :allow_destroy => true
 	
@@ -22,6 +27,11 @@ class Album < ActiveRecord::Base
     tmp = self.revision.to_i + 1
 	self.revision = tmp
   end
+
+  private
+    def create_remember_a_token
+	  self.remember_a_token = SecureRandom.urlsafe_base64
+	end
 
 #  	has_attached_file :photo,
 #  	  :styles => {

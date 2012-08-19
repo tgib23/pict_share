@@ -20,7 +20,8 @@ namespace :db do
 	2.times do
 	  name = "test name"
 	  content = "test content"
-	  users.each { |user| user.albums.create!(name: name, content: content) }
+	  password = "pass"
+	  users.each { |user| user.albums.create!(name: name, content: content, password: password, password_confirmation: password ) }
 	end
   end
 end

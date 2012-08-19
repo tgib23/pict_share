@@ -1,4 +1,20 @@
 <h1>Listing albums</h1>
+<% if @tmp.nil? %>
+  <%= "tmp nil" %>
+<% else %>
+  <%= "tmp nonil" %>
+<% end %>
+<% if current_album.nil? %>
+  <%= "current_album_nil" %>
+<% else %>
+  <%= "current_album not nil" %>
+  <%= current_album.id %>
+  <% if current_album.remember_a_token.nil? %>
+    <%= "token nil" %>
+  <% else %>
+    <%= "token not nil" %>
+  <% end %>
+<% end %>
 
 <table>
   <tr>

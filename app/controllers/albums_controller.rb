@@ -4,6 +4,7 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
     @albums = Album.all
+	@tmp = current_album
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +16,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1.json
   def show
     @album = Album.find(params[:id])
+	@tmp = current_album
 #	@photos = @album.photos
 
     respond_to do |format|
@@ -48,6 +50,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
+	    sign_album_in @album
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
 		`touch /tmp/album_make`
@@ -65,6 +68,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
+	    sign_album_in @album
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,3 +1,4 @@
+<% provide(:title, "Edit Album") %>
 <%= form_for(@album) do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +12,14 @@
     </div>
   <% end %>
 
+  <% if signed_in? %>
+    <%= "user id:" %>
+	<%= current_user.id %>
+    <%= "signed in" %>
+  <% else %>
+    <%= "you shouls sign in" %>
+  <% end %>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -20,6 +29,16 @@
     <%= f.text_area :content %>
   </div>
   <div class="field">
+    <%= f.label :外部コントロールOFF %>
+	<%= f.radio_button :ncc, 0 , {:checked => true} %>
+    <%= f.label :外部コントロールON %>
+	<%= f.radio_button :ncc, 1 %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.hidden_field :password, { :value => "pass"} %>
+	<%= f.hidden_field :password_confirmation, { :value => "pass"} %>
+	<%# f.hidden_field :password_digest, { :value => "pass"} %>
   </div>
   <div class="actions">
     <%= f.submit %>

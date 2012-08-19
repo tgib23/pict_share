@@ -3,9 +3,13 @@ PicShare::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :albums
+  resources :album_sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout',  to: 'sessions#destroy', via: :delete
+  match '/album_signup',  to: 'albums#new'
+  match '/album_signin',  to: 'album_sessions#new'
+  match '/album_signout', to: 'album_sessions#destroy', via: :delete
 
 #  get "photos/index"
 
