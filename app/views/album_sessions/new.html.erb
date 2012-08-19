@@ -1,0 +1,19 @@
+<% provide(:title, "Album Sign in") %>
+<h1>Album Sign in</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:album_session, url: album_sessions_path) do |f| %>
+
+	  <%= f.label :id %>
+	  <%= f.text_field :id %>
+
+	  <%= f.label :password %>
+	  <%= f.password_field :password %>
+
+	  <%= f.submit "Album Sign in", class: "btn btn-large btn-primary" %>
+	<% end %>
+
+  </div>
+</div>
+
