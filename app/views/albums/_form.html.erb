@@ -33,28 +33,52 @@
 	<%= f.radio_button :ncc, 0 %>
     <%= f.label :ノンログインユーザに参照のみ許す %>
 	<%= f.radio_button :ncc, 1 %>
-    <%= f.label :ログインユーザに参照・追加を許す %>
-	<%= f.radio_button :ncc, 2 %>
-    <%= f.label :ログインユーザに参照のみ許す %>
+    <%= f.label :ログインユーザに参照・追加を許す（パスワードの入力が必要です） %>
+	<%= f.radio_button :ncc, 2, { :checked => true } %>
+    <%= f.label :ログインユーザに参照のみ許す（パスワードの入力が必要です） %>
 	<%= f.radio_button :ncc, 3 %>
 	<%= f.label :password %>
-	<%= f.text_field :password, { :name => 'ncc_field' } %>
+	<%= f.text_field :password  %>
 	<%= f.label :confirmation %>
-	<%= f.text_field :password_confirmation, { :name => 'ncc_field' } %>
-  </div>
-  <div class="field">
-    <%#= f.label :外部コントロールOFF %>
-	<%#= f.radio_button :ncc, 0 , {:checked => true} %>
-    <%#= f.label :外部コントロールON %>
-	<%#= f.radio_button :ncc, 1 %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.hidden_field :password, { :value => "pass"} %>
-	<%= f.hidden_field :password_confirmation, { :value => "pass"} %>
-	<%# f.hidden_field :password_digest, { :value => "pass"} %>
+	<%= f.text_field :password_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+<!--
+    $(function() {
+		$("#album_ncc_0").click(function() {
+			$("#album_password").attr("readonly", true);
+			$("#album_password_confirmation").attr("readonly", true);
+			if ($("#album_password").val() == '') {
+				$("#album_password").val("password");
+			}
+			if ($("#album_password_confirmation").val() == '') {
+				$("#album_password_confirmation").val("password");
+			}
+		});
+		$("#album_ncc_1").click(function() {
+			$("#album_password").attr("readonly", true);
+			$("#album_password_confirmation").attr("readonly", true);
+			if ($("#album_password").val() == '') {
+				$("#album_password").val("password");
+			}
+			if ($("#album_password_confirmation").val() == '') {
+				$("#album_password_confirmation").val("password");
+			}
+    	});
+		$("#album_ncc_2").click(function() {
+			$("#album_password").removeAttr("readonly");
+			$("#album_password_confirmation").removeAttr("readonly");
+    	});
+		$("#album_ncc_3").click(function() {
+			$("#album_password").removeAttr("readonly");
+			$("#album_password_confirmation").removeAttr("readonly");
+    	});
+	});
+// -->
+</script>
