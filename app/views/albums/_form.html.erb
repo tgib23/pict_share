@@ -29,10 +29,24 @@
     <%= f.text_area :content %>
   </div>
   <div class="field">
-    <%= f.label :外部コントロールOFF %>
-	<%= f.radio_button :ncc, 0 , {:checked => true} %>
-    <%= f.label :外部コントロールON %>
+    <%= f.label :ノンログインユーザに参照・追加を許す %>
+	<%= f.radio_button :ncc, 0 %>
+    <%= f.label :ノンログインユーザに参照のみ許す %>
 	<%= f.radio_button :ncc, 1 %>
+    <%= f.label :ログインユーザに参照・追加を許す %>
+	<%= f.radio_button :ncc, 2 %>
+    <%= f.label :ログインユーザに参照のみ許す %>
+	<%= f.radio_button :ncc, 3 %>
+	<%= f.label :password %>
+	<%= f.text_field :password, { :name => 'ncc_field' } %>
+	<%= f.label :confirmation %>
+	<%= f.text_field :password_confirmation, { :name => 'ncc_field' } %>
+  </div>
+  <div class="field">
+    <%#= f.label :外部コントロールOFF %>
+	<%#= f.radio_button :ncc, 0 , {:checked => true} %>
+    <%#= f.label :外部コントロールON %>
+	<%#= f.radio_button :ncc, 1 %>
   </div>
   <div class="field">
     <%= f.label :password %>

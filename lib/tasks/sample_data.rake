@@ -21,7 +21,8 @@ namespace :db do
 	  name = "test name"
 	  content = "test content"
 	  password = "pass"
-	  users.each { |user| user.albums.create!(name: name, content: content, password: password, password_confirmation: password ) }
+	  ncc = rand(4)
+	  users.each { |user| user.albums.create!(name: name, content: content, password: password, password_confirmation: password, ncc: ncc ) }
 	end
   end
 end

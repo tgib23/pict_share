@@ -16,13 +16,27 @@ class AlbumsController < ApplicationController
   # GET /albums/1.json
   def show
     @album = Album.find(params[:id])
-	@tmp = current_album
-#	@photos = @album.photos
+	if @album.ncc.nil?
+		redirect_to album_signin_path, notice: "Something is wrong with your album(ncc unset)"
+	# albumが見れない条件
+	# 1. albumのnccが2以上であり、かつ2., 3., 4.のどれかにマッチ
+	# 2. ログイン(ユーザ：アルバム)していない
+	# 3. ログインしていてもアルバムを保持しているユーザではない
+	# 4. ログインしていても該当アルバムに関してログインしていない
+    elsif @album.ncc >= 2 &&
+	   ((current_user.nil? && current_album.nil?) ||
+	   (!current_user.nil? && (@album.user_id != current_user.id && current_user.id != 1)) ||
+	   (!current_album.nil? && @album.id != current_album.id ))
+	    redirect_to album_signin_path, notice: "Please sign in."
+	else
+		@tmp = current_album
+#		@photos = @album.photos
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @album }
-    end
+    	respond_to do |format|
+    	  format.html # show.html.erb
+    	  format.json { render json: @album }
+    	end
+	end
   end
 
   # GET /albums/new

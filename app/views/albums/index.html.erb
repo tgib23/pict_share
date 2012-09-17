@@ -23,6 +23,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @albums.each do |album| %>
@@ -30,8 +31,16 @@
     <td><%= album.name %></td>
     <td><%= album.content %></td>
     <td><%= link_to 'Show', album %></td>
-    <td><%= link_to 'Edit', edit_album_path(album) %></td>
-    <td><%= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%#= link_to 'Edit', edit_album_path(album) %></td>
+    <td><%#= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %></td>
+    <td><% if signed_in? && current_user.id == album.user_id %><%= link_to 'Edit', edit_album_path(album) %><% end %></td>
+    <td><% if signed_in? && current_user.id == album.user_id %><%= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %><% end %></td>
+	<td><% if album.ncc == 0 %>参照・変更可能
+		<% elsif album.ncc == 1 %>参照のみ可能
+		<% elsif album.ncc == 2 %>ログインして参照・変更可能
+		<% elsif album.ncc == 3 %>ログインして参照のみ可能
+		<% end %>
+	</td>
   </tr>
 <% end %>
 </table>
