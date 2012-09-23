@@ -6,8 +6,24 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", '#' %></li>
+		  <li><%= link_to "AlbumLists", albums_path %></li>
+		  <% if signed_album_in? %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_album.name %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Show Album", current_album %></li>
+                <li><%= link_to "Edit Album", edit_album_path(current_album) %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Album Sign Out", album_signout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
+		  <% else %>
+		  <% end %>
           <% if signed_in? %>
-            <li><%= link_to "Users", user_path(current_user) %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.name %> <b class="caret"></b>
@@ -17,12 +33,12 @@
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
+                  <%= link_to "Sign Out", signout_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "User Sign In", signin_path %></li>
           <% end %>
         </ul>
       </nav>

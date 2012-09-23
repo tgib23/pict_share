@@ -10,33 +10,10 @@
   <%= @album.content %>
 </p>
 
-<% if @tmp.nil? %>
-  <%= "tmp nil" %>
-<% else %>
-  <%= "tmp nonil" %>
-<% end %>
-<% if cookies[:remember_a_token].nil? %>
-  <%= "token_nil" %>
-<% else %>
-  <%= "token not nill" %>
-<% end %>
-<% if current_album.nil? %>
-  <%= "current_album_nil" %>
-<% else %>
-  <%= "current_album not nil" %>
-  <%= current_album.id %>
-<% end %>
-<% if signed_album_in? %>
-<p>
-  <b>
-  <%= link_to "Sign Out album", album_signout_path, method: "delete" %>
-  </b>
-</p>
+<% if !current_user.nil? && @album.user_id == current_user.id %>
+<%= link_to 'Edit', edit_album_path(@album), class: "btn" %> 
 <% end %>
 
-
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
 
 
 

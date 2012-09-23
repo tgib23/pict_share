@@ -1,40 +1,39 @@
 <h1>Listing albums</h1>
-<% if @tmp.nil? %>
-  <%= "tmp nil" %>
-<% else %>
-  <%= "tmp nonil" %>
-<% end %>
-<% if current_album.nil? %>
-  <%= "current_album_nil" %>
-<% else %>
-  <%= "current_album not nil" %>
-  <%= current_album.id %>
-  <% if current_album.remember_a_token.nil? %>
-    <%= "token nil" %>
-  <% else %>
-    <%= "token not nil" %>
-  <% end %>
-<% end %>
 
-<table>
-  <tr>
-    <th>Name</th>
+<table class="table ">
+  <tr class="success">
+    <th>Album ID</th>
+    <th>User</th>
+    <th>Title</th>
     <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>State</th>
   </tr>
 
 <% @albums.each do |album| %>
-  <tr>
+
+    <% if album.ncc == 0 %><tr class="success">
+	<% elsif album.ncc == 1 %><tr class="info">
+	<% elsif album.ncc == 2 %><tr class="warning">
+	<% else %><tr class="error">
+	<% end %>
+    <td><%= album.id %></td>
+    <td><%= User.find_by_id(album.user_id).name %> </td>
     <td><%= album.name %></td>
     <td><%= album.content %></td>
-    <td><%= link_to 'Show', album %></td>
-    <td><%#= link_to 'Edit', edit_album_path(album) %></td>
-    <td><%#= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %></td>
-    <td><% if signed_in? && current_user.id == album.user_id %><%= link_to 'Edit', edit_album_path(album) %><% end %></td>
-    <td><% if signed_in? && current_user.id == album.user_id %><%= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %><% end %></td>
+    <td><%= link_to 'Show', album, class: "btn"  %></td>
+    <% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) %>
+		<td>
+			<%= link_to 'Edit', edit_album_path(album), class: "btn" %>
+ 		</td>
+		<td>
+			<%= link_to 'Delete', album, confirm: 'Are you sure?', method: :delete, class: "btn" %>
+		</td>
+	<% else %>
+		<td></td><td></td>
+	<% end %>
 	<td><% if album.ncc == 0 %>参照・変更可能
 		<% elsif album.ncc == 1 %>参照のみ可能
 		<% elsif album.ncc == 2 %>ログインして参照・変更可能
@@ -47,4 +46,4 @@
 
 <br />
 
-<%= link_to 'New Album', new_album_path %>
+<%= link_to 'New Album', new_album_path, class: "btn btn-large btn-warning" %>

@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user, only: [:create, :destroy, :edit]
   # GET /albums
   # GET /albums.json
   def index
@@ -23,19 +23,18 @@ class AlbumsController < ApplicationController
 	# 2. ログイン(ユーザ：アルバム)していない
 	# 3. ログインしていてもアルバムを保持しているユーザではない
 	# 4. ログインしていても該当アルバムに関してログインしていない
-    elsif @album.ncc >= 2 &&
-	   ((current_user.nil? && current_album.nil?) ||
-	   (!current_user.nil? && (@album.user_id != current_user.id && current_user.id != 1)) ||
-	   (!current_album.nil? && @album.id != current_album.id ))
-	    redirect_to album_signin_path, notice: "Please sign in."
-	else
+    elsif @album.ncc <= 1 ||
+	      ( @album.ncc >= 2 &&
+	      ( (!current_user.nil? && (@album.user_id == current_user.id || current_user.id == 1)) ||
+	        (!current_album.nil? && @album.id == current_album.id )) )
 		@tmp = current_album
-#		@photos = @album.photos
 
     	respond_to do |format|
     	  format.html # show.html.erb
     	  format.json { render json: @album }
     	end
+	else
+	    redirect_to album_signin_path, notice: "Please sign in."
 	end
   end
 
@@ -53,6 +52,10 @@ class AlbumsController < ApplicationController
   # GET /albums/1/edit
   def edit
     @album = Album.find(params[:id])
+  	# albumを保持しているユーザもしくはadminユーザのみ編集可能
+	if !(!current_user.nil? && current_user.id == @album.user_id)
+	  redirect_to signin_path
+	end
   end
 
   # POST /albums
