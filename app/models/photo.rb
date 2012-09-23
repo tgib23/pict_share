@@ -18,13 +18,14 @@ class Photo < ActiveRecord::Base
   has_attached_file :photo,
 	:styles => {
 	   :large => "800x800>", 
-       :thumb=> "100x100#",
-       :small  => "400x400>" },
-    :url => "/system/pict_share/1/:attachment/:id/:style/:basename.:extension",
-    :path => ":rails_root/public/system/pict_share/1/:attachment/:id/:style/:basename.:extension" ## attachementがphoto, idが勝手につく
-#	validates_attachment_presence :photo
-#	validates_attachment_size :photo, :less_than => 2.megabytes  
-#	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] ## うまく動かない
+       :thumb=> "100x100#", },
+	:hash_secret => "longSecretString",
+	:url => "/system/pict_share/:path/:attachment/:id/:style/:basename.:extension"
+#    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:hash.:extension" ## attachementがphoto, idが勝手につく
+#    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:basename.:extension" ## attachementがphoto, idが勝手につく
+	validates_attachment_presence :photo
+	validates_attachment_size :photo, :less_than => 20.megabytes  
+#	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/JPG'] ## うまく動かない
 # this add_album branch
 #	validates :album_id, presence: true
   def uploaded_file=(file_data)

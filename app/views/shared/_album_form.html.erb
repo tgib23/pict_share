@@ -4,5 +4,19 @@
     <%= f.text_field :name, placeholder: "new album title here" %>
     <%= f.text_area :content, placeholder: "new album explanation..." %>
   </div>
+  <div class="field">
+    <%= f.label :ノンログインユーザに参照・追加を許す %>
+	<%= f.radio_button :ncc, 0 %>
+    <%= f.label :ノンログインユーザに参照のみ許す %>
+	<%= f.radio_button :ncc, 1 %>
+    <%= f.label :ログインユーザに参照・追加を許す（パスワードの入力が必要です） %>
+	<%= f.radio_button :ncc, 2, { :checked => true } %>
+    <%= f.label :ログインユーザに参照のみ許す（パスワードの入力が必要です） %>
+	<%= f.radio_button :ncc, 3 %>
+	<%= f.label :password %>
+	<%= f.text_field :password  %>
+	<%= f.label :confirmation %>
+	<%= f.text_field :password_confirmation %>
+  </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

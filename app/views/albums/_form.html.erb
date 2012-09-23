@@ -42,8 +42,15 @@
 	<%= f.label :confirmation %>
 	<%= f.text_field :password_confirmation %>
   </div>
+  <% @album.photos.each do |photo| %>
+  	<%= image_tag(photo.photo.url(:thumb)) %>
+	<%= photo.id %>
+	<%= link_to "delete", photo, method: :delete, data: { confirm: "この写真を削除します" }, title: photo.id %>
+	<br />
+	<br />
+  <% end %>
   <div class="actions">
-    <%= f.submit %>
+	<button type="submit" class="btn btn-primary">Save changes</button>
   </div>
 <% end %>
 

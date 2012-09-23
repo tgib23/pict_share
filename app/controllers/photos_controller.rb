@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
 	  @album = Album.find(params[:aid])
 	  com = "zip "
 	  @album.photos.each do |photok|
-	    com += "public/system/pict_share/1/photos/"
+	    com += "app/assets/data/photos/"
 		com += "#{photok.id}"
 	    #`echo #{photok.id} >> /tmp/photo_make`
 	    com += "/original/#{photok.photo.original_filename} "
@@ -23,5 +23,14 @@ class PhotosController < ApplicationController
       render :json => {"status" => "NG"}
     end
 #	redirect_to album_path(:aid)
+  end
+
+  def destroy
+  	@delete_photo = Photo.find(params[:id])
+	@album = Album.find_by_id(@delete_photo.album_id)
+	redirect_pg = 'albums/edit/#{album_id}'
+	@delete_photo.destroy
+	redirect_to [:edit, @album]
+#	redirect_to albums_url
   end
 end
