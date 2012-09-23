@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818135654) do
+ActiveRecord::Schema.define(:version => 20120923114503) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "user_id"
     t.integer  "revision"
     t.string   "password_digest"
     t.integer  "ncc"
     t.string   "remember_a_token"
+    t.string   "directory_strings"
   end
 
   add_index "albums", ["remember_a_token"], :name => "index_albums_on_remember_a_token"

@@ -23,7 +23,11 @@
     <td><%= User.find_by_id(album.user_id).name %> </td>
     <td><%= album.name %></td>
     <td><%= album.content %></td>
+	<% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) || (!current_album.nil? && (current_album.id == album.id)) %>
     <td><%= link_to 'Show', album, class: "btn"  %></td>
+	<% else %>
+	<td></td>
+	<% end %>
     <% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) %>
 		<td>
 			<%= link_to 'Edit', edit_album_path(album), class: "btn" %>
