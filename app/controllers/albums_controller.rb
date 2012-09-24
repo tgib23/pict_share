@@ -53,7 +53,7 @@ class AlbumsController < ApplicationController
   def edit
     @album = Album.find(params[:id])
   	# albumを保持しているユーザもしくはadminユーザのみ編集可能
-	if !(!current_user.nil? && current_user.id == @album.user_id)
+	if !(!current_user.nil? && (current_user.id == @album.user_id || current_user.admin == true))
 	  redirect_to signin_path
 	end
   end

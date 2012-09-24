@@ -26,7 +26,7 @@
 	<% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) || (!current_album.nil? && (current_album.id == album.id)) %>
     <td><%= link_to 'Show', album, class: "btn"  %></td>
 	<% else %>
-	<td></td>
+	<td><%= link_to 'Login', album_signin_path, class: "btn" %></td>
 	<% end %>
     <% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) %>
 		<td>
