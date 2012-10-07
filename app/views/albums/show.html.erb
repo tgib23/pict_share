@@ -12,8 +12,11 @@
 
 <p>
   <b><%= link_to 'Zip', '#' %>:</b>
-  Total <%= @album.photos.count %> pics / Last Update 
-  <%= @album.photos.last.updated_at %>
+  Total <%= @album.photos.count %> pics
+  <% if @album.photos.count > 0 %>
+    / Last Update
+    <%=@album.photos.last.updated_at %>
+  <% end %>
 </p>
 <% if !current_user.nil? && @album.user_id == current_user.id %>
   <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 

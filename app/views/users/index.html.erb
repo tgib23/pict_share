@@ -1,4 +1,36 @@
 <% provide(:title, 'All users') %>
+<% if current_user.nil? %>
+<center>
+<div class="flexslider">
+  <ul class="slides">
+	  <li>
+	    <img src="top/RIMG0100.JPG" width="600">
+	  </li>
+	  <li>
+	    <img src="top/RIMG0267.JPG" width="600">
+	  </li>
+	  <li>
+	    <img src="top/RIMG0440.JPG" width="600">
+	  </li>
+ </ul>
+</div>
+</center>
+<br />
+<br />
+<br />
+<div class="alert alert-info">
+<strong>PictCollectで写真の共有をもっと簡単に</strong><br />
+レジャー、結婚式、日々の記録をパスワード付きで保存できます
+</div>
+アカウント登録はこちらから
+<%= link_to 'Sign Up', signup_path, class: "btn btn-large" %>
+<br />
+<br />
+ログインはこちらから
+<%= link_to 'Sign In', signin_path, class: "btn btn-large" %>
+<br />
+<br />
+<% else %>
 <h1>All users</h1>
 
 <%= will_paginate %>
@@ -10,3 +42,4 @@
 </ul>
 
 <%= will_paginate %>
+<% end %>

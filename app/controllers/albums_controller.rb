@@ -3,8 +3,9 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
-	@tmp = current_album
+#    @albums = Album.all
+    @albums = Album.paginate(page: params[:page])
+#	@tmp = current_album
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +28,7 @@ class AlbumsController < ApplicationController
 	      ( @album.ncc >= 2 &&
 	      ( (!current_user.nil? && (@album.user_id == current_user.id || current_user.id == 1)) ||
 	        (!current_album.nil? && @album.id == current_album.id )) )
-		@tmp = current_album
+#		@tmp = current_album
 
     	respond_to do |format|
     	  format.html # show.html.erb

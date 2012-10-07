@@ -12,6 +12,8 @@
     <th>State</th>
   </tr>
 
+<%= will_paginate %>
+<ul class="albums">
 <% @albums.each do |album| %>
 
     <% if album.ncc == 0 %><tr class="success">
@@ -20,10 +22,10 @@
 	<% else %><tr class="error">
 	<% end %>
     <td><%= album.id %></td>
-    <td><%= User.find_by_id(album.user_id).name %> </td>
+    <td><%= link_to User.find_by_id(album.user_id).name, User.find_by_id(album.user_id) %></td>
     <td><%= album.name %></td>
     <td><%= album.content %></td>
-	<% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) || (!current_album.nil? && (current_album.id == album.id)) %>
+	<% if ((album.ncc == 0 || album.ncc == 1) || signed_in? && (current_user.id == album.user_id || current_user.admin == true)) || (!current_album.nil? && (current_album.id == album.id)) %>
     <td><%= link_to 'Show', album, class: "btn"  %></td>
 	<% else %>
 	<td><%= link_to 'Login', album_signin_path, class: "btn" %></td>
@@ -46,8 +48,9 @@
 	</td>
   </tr>
 <% end %>
+</ul>
+<%= will_paginate %>
 </table>
 
 <br />
 
-<%= link_to 'New Album', new_album_path, class: "btn btn-large btn-warning" %>
