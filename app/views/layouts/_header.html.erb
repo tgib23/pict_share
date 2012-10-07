@@ -6,7 +6,6 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", '#' %></li>
-		  <li><%= link_to "AlbumLists", albums_path %></li>
 		  <% if signed_album_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -24,6 +23,8 @@
 		  <% else %>
 		  <% end %>
           <% if signed_in? %>
+		    <li><%= link_to "Album List", albums_path %></li>
+		    <li><%= link_to "User List", users_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.name %> <b class="caret"></b>

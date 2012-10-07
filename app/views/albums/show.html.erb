@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Title:</b>
   <%= @album.name %>
 </p>
 
@@ -10,8 +10,13 @@
   <%= @album.content %>
 </p>
 
+<p>
+  <b><%= link_to 'Zip', '#' %>:</b>
+  Total <%= @album.photos.count %> pics / Last Update 
+  <%= @album.photos.last.updated_at %>
+</p>
 <% if !current_user.nil? && @album.user_id == current_user.id %>
-<%= link_to 'Edit', edit_album_path(@album), class: "btn" %> 
+  <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
 <% end %>
 
 
@@ -20,20 +25,17 @@
 <h1>Photos</h1>
 
 <center>
-<%= @album.id %>
 
 <div class="flexslider">
   <ul class="slides">
 	<% @album.photos.each do |photo| %>
 	  <li>
-	    test 
 	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
 	  </li>
 	<% end %>
  </ul>
 </div>
 
-<%= @album.photos.count %>
 <br /><br /><br /><br /><br />
 <input type="file" name="uploadify" id="uploadify" />
 <input type="hidden" name="aid" value="<%= @album.id %>" />

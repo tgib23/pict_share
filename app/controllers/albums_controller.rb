@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy, :edit]
+  before_filter :signed_in_user, only: [:index, :create, :destroy, :edit]
   # GET /albums
   # GET /albums.json
   def index
