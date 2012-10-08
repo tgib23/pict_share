@@ -17,7 +17,44 @@
 	  <%= f.label :password_confirmation, "Confirmation" %>
 	  <%= f.password_field :password_confirmation %>
 
-	  <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	  <%#= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <a href="#myModal" role="button" class="btn" data-toggle="modal">Create Account</a>
+       
+      <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Modal header</h3>
+        </div>
+        <div class="modal-body">
+          <strong>利用規約</strong>
+            <ul>
+            <li>
+            <p>セキュリティ保証は万全ではありません。流出して問題があるデータのアップロードはお控えください。</p>
+            </li>
+            <li>
+            <p>データ容量は有限なので、削除依頼をお願いすることがあります。</p>
+            </li>
+            <li>
+            <p>Eメールアドレスはご自身の有効なアドレスを記載してください。無効なアドレスの場合、アカウント及び写真を削除することがあります。</p>
+            </li>
+            <li>
+            <p>ログインユーザに対しては、利用ユーザ一覧と、全利用者が作成したアルバムのタイトル一覧が表示されます。</p>
+            </li>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button class="btn btn-primary">Make Account</button>
+        </div>
+      </div>
+
 	<% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+<!--
+$('#myModal').modal({ show: true })
+$('#myModal').modal('toggle')
+$('#myModal').modal('hide')
+-->
+</script>
