@@ -41,6 +41,14 @@ class UsersController < ApplicationController
 	end
   end
 
+  def help
+
+  end
+
+  def policy
+
+  end
+
   def destroy
     User.find(params[:id]).destroy
 	flash[:success] = "User destroyed."

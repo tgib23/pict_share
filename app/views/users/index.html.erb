@@ -1,5 +1,20 @@
 <% provide(:title, 'All users') %>
 <% if current_user.nil? %>
+<p>
+  <b>Title:</b>
+  サンプルアルバム
+</p>
+
+<p>
+  <b>Content:</b>
+  トップページ用のサンプル写真
+</p>
+
+<p>
+  <b><%= link_to 'Zip', '#' %>:</b>
+  Total 3 pics
+    / Last Update 2012-10-08 05:45:16 UTC
+</p>
 <center>
 <div class="flexslider">
   <ul class="slides">
@@ -20,14 +35,14 @@
 <br />
 <div class="alert alert-info">
 <strong>PictCollectで写真の共有をもっと簡単に</strong><br />
-レジャー、結婚式、日々の記録をパスワード付きで保存できます
+レジャー、冠婚葬祭、日々の記録を、アルバムごとにパスワードをつけて保存できます
 </div>
-アカウント登録はこちらから
-<%= link_to 'Sign Up', signup_path, class: "btn btn-large" %>
 <br />
 <br />
-ログインはこちらから
-<%= link_to 'Sign In', signin_path, class: "btn btn-large" %>
+<center>
+<%= link_to 'アカウント登録はこちらから', signup_path, class: "btn btn-primary btn-large " %>
+<%= link_to 'ログインはこちらから', signin_path, class: "btn btn-large" %>
+</center>
 <br />
 <br />
 <% else %>

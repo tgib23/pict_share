@@ -1,5 +1,9 @@
 PicShare::Application.routes.draw do
 
+  get "users/policy"
+
+  get "users/help"
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :albums
@@ -10,6 +14,8 @@ PicShare::Application.routes.draw do
   match '/album_signup',  to: 'albums#new'
   match '/album_signin',  to: 'album_sessions#new'
   match '/album_signout', to: 'album_sessions#destroy', via: :delete
+  match '/help', to: 'users#help'
+  match '/policy', to: 'users#policy'
 
 #  get "photos/index"
 
