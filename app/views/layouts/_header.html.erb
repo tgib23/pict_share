@@ -21,6 +21,7 @@
               </ul>
             </li>
 		  <% else %>
+		    <li><%= link_to "Album Sign In", album_signin_path %></li>
 		  <% end %>
           <% if signed_in? %>
 		    <li><%= link_to "Album List", albums_path %></li>
