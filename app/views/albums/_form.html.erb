@@ -38,9 +38,9 @@
     <%= f.label :ログインユーザに参照のみ許す（パスワードの入力が必要です） %>
 	<%= f.radio_button :ncc, 3 %>
 	<%= f.label :password %>
-	<%= f.text_field :password  %>
+	<%= f.password_field :password  %>
 	<%= f.label :confirmation %>
-	<%= f.text_field :password_confirmation %>
+	<%= f.password_field :password_confirmation %>
   </div>
   <div class="field">
   	<% if @album.directory_strings.nil? %>
