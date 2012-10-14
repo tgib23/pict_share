@@ -1,5 +1,7 @@
 PicShare::Application.routes.draw do
 
+  resources :requests
+
   get "users/policy"
 
   get "users/help"
