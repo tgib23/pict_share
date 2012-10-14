@@ -17,7 +17,7 @@ class Photo < ActiveRecord::Base
   belongs_to :album
   has_attached_file :photo,
 	:styles => {
-	   :large => "800x800>", 
+	   :large => "680x800", 
        :thumb=> "100x100#", },
 	:hash_secret => "longSecretString",
 	:url => "/system/pict_share/:path/:attachment/:id/:style/:basename.:extension"

@@ -51,7 +51,6 @@
   </div>
   <% @album.photos.each do |photo| %>
   	<%= image_tag(photo.photo.url(:thumb)) %>
-	<%= photo.id %>
 	<%= link_to "delete", photo, method: :delete, data: { confirm: "この写真を削除します" }, title: photo.id %>
 	<br />
 	<br />
