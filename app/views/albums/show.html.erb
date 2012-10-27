@@ -1,3 +1,4 @@
+<% provide(:title, "#{@album.name} - ") %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -11,7 +12,7 @@
 </p>
 
 <p>
-  <b><%= link_to 'Zip', '#' %>:</b>
+  <b><%= link_to 'Zip', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip' %>:</b>
   Total <%= @album.photos.count %> pics
   <% if @album.photos.count > 0 %>
     / Last Update
@@ -33,7 +34,8 @@
   <ul class="slides">
 	<% @album.photos.each do |photo| %>
 	  <li>
-	    <%= image_tag(photo.photo.url(:large)) %>
+	    <%#= image_tag(photo.photo.url(:large)) %>
+	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
 	  </li>
 	<% end %>
  </ul>

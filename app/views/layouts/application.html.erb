@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PictCollect</title>
+  <title><%= yield(:title) %>PictCollect  </title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag "flexslider" %>
   <%= javascript_include_tag "application" %>
@@ -22,7 +22,7 @@
 	<span class="label label-warning">このサイトはまだテスト中です</span>
     <%= yield %>
 	<%= render 'layouts/footer' %>
-	<%= debug(params) if Rails.env.development? %>
+	<%#= debug(params) if Rails.env.development? %>
   </div>
 
 </body>

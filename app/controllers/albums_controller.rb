@@ -71,7 +71,6 @@ class AlbumsController < ApplicationController
 	    sign_album_in @album
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
-		`touch /tmp/album_make`
       else
         format.html { render action: "new" }
         format.json { render json: @album.errors, status: :unprocessable_entity }

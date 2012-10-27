@@ -7,7 +7,7 @@ class AlbumSessionsController < ApplicationController
     album = Album.find_by_id(params[:album_session][:id])
 	if album && album.authenticate(params[:album_session][:password])
 	  sign_album_in album
-	  redirect_back_or album
+	  redirect_to album
 	else
 	  flash[:error] = 'Invalid id/password combination'
 	  render 'new'
