@@ -215,3 +215,19 @@ aside {
   }
 }
 
+.fb-like {
+  position: absolute;
+  right: 1px;
+}
+
+.snsb {
+  overflow: hidden;
+  margin-left: 550px;
+}
+.snsb li {
+	float: left;
+	margin-right: 4px;
+}
+.snsb iframe {
+	margin: 0 !important;
+}

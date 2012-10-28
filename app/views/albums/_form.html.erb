@@ -12,31 +12,20 @@
     </div>
   <% end %>
 
-  <% if signed_in? %>
-    <%= "user id:" %>
-	<%= current_user.id %>
-    <%= "signed in" %>
-  <% else %>
-    <%= "you shouls sign in" %>
-  <% end %>
-
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :title %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.label :memo %><br />
+    <%= f.text_area :content , :cols => "30", :rows => "3" %>
   </div>
   <div class="field">
-    <%= f.label :ノンログインユーザに参照・追加を許す %>
-	<%= f.radio_button :ncc, 0 %>
-    <%= f.label :ノンログインユーザに参照のみ許す %>
-	<%= f.radio_button :ncc, 1 %>
-    <%= f.label :ログインユーザに参照・追加を許す（パスワードの入力が必要です） %>
-	<%= f.radio_button :ncc, 2, { :checked => true } %>
-    <%= f.label :ログインユーザに参照のみ許す（パスワードの入力が必要です） %>
-	<%= f.radio_button :ncc, 3 %>
+	<%= f.label :control %><br />
+  <%= f.radio_button :ncc, 0 %> &nbsp &nbsp  ノンログインユーザに参照・追加を許す <br />
+	<%= f.radio_button :ncc, 1 %> &nbsp &nbsp ノンログインユーザに参照のみ許す<br />
+	<%= f.radio_button :ncc, 2, { :checked => true } %> &nbsp &nbsp ログインユーザに参照・追加を許す（パスワードの入力が必要です）<br />
+	<%= f.radio_button :ncc, 3 %> &nbsp &nbsp ログインユーザに参照のみ許す（パスワードの入力が必要です）<br />
 	<%= f.label :password %>
 	<%= f.password_field :password  %>
 	<%= f.label :confirmation %>

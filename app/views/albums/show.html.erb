@@ -25,8 +25,18 @@
 
 
 
+<br />
+<ul class="snsb">
 
-<h1>Photos</h1>
+<li>
+<% facebook_link = "http://pictcollect.dip.jp/albums/" + @album.id.to_s %>
+<div class="fb-like" align="right" data-href="<%= facebook_link %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div>
+</li>
+<li>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="pictcollect">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+</li>
+</ul>
 
 <center>
 
@@ -71,5 +81,4 @@ $(function() {
  });
 });
 </script>
-
 
