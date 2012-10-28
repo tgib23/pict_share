@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
     if photo.save
       @album = Album.find(params[:aid])
 			rm_com = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip"
-      com = "/usr/bin/zip "
+      com = "/usr/bin/zip -j "
       com += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip "
       @album.photos.each do |photok|
         com += "/home/satoshi/rails/pict_share/public/system/pict_share/"
