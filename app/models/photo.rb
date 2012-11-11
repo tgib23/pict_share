@@ -18,7 +18,8 @@ class Photo < ActiveRecord::Base
   has_attached_file :photo,
 	:styles => {
 	   :large => "680x800", 
-       :thumb=> "100x100#", },
+     :thumb=> "100x100#", },
+  :convert_options => { :all => '-auto-orient' },
 	:hash_secret => "longSecretString",
 	:url => "/system/pict_share/:path/:attachment/:id/:style/:basename.:extension"
 #    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:hash.:extension" ## attachementがphoto, idが勝手につく
