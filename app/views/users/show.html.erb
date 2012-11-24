@@ -10,7 +10,7 @@
   </aside>
   <div class="span8">
     <% if @user.albums.any? %>
-      <h3><%= @user.name %>のアルバム一覧 (<%= @user.albums.count %>)</h3>
+      <h3><%= @user.name %>のアルバムリスト (<%= @user.albums.count %>)</h3>
       <ol class="albums">
         <%= render @albums %>
       </ol>
