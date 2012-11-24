@@ -2,12 +2,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
+  <b>タイトル:</b>
   <%= @album.name %>
 </p>
 
 <p>
-  <b>Content:</b>
+  <b>メモ:</b>
   <%= @album.content %>
 </p>
 
@@ -68,7 +68,7 @@ $(function() {
  'uploader'       : '/javascripts/uploadify.swf',
  'script'         : '/photos',
  'queueID'        : 'file_queue',
- 'buttonText'     : 'UPLOAD PHOTO',
+ 'buttonText'     : 'Choose Photo',
  'cancelImg'      : '/images/cancel.png',
  'auto'           : true,
  'multi'          : true,
