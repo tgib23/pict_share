@@ -13,22 +13,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, "タイトル" %>
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :memo %><br />
+    <%= f.label :memo, "メモ" %>
     <%= f.text_area :content , :cols => "30", :rows => "3" %>
-  </div>
-  <div class="field">
-	<%= f.label :control %><br />
+	<%= f.label :control, "管理レベル" %>
   <%= f.radio_button :ncc, 0 %> &nbsp &nbsp  ノンログインユーザに参照・追加を許す <br />
 	<%= f.radio_button :ncc, 1 %> &nbsp &nbsp ノンログインユーザに参照のみ許す<br />
 	<%= f.radio_button :ncc, 2, { :checked => true } %> &nbsp &nbsp ログインユーザに参照・追加を許す（パスワードの入力が必要です）<br />
-	<%= f.radio_button :ncc, 3 %> &nbsp &nbsp ログインユーザに参照のみ許す（パスワードの入力が必要です）<br />
-	<%= f.label :password %>
+	<%= f.radio_button :ncc, 3 %> &nbsp &nbsp ログインユーザに参照のみ許す（パスワードの入力が必要です）<br /><br />
+	<%= f.label :password, "パスワード" %>
 	<%= f.password_field :password  %>
-	<%= f.label :confirmation %>
+	<%= f.label :confirmation, "パスワード（確認用)" %>
 	<%= f.password_field :password_confirmation %>
   </div>
   <div class="field">
@@ -40,12 +36,12 @@
   </div>
   <% @album.photos.each do |photo| %>
   	<%= image_tag(photo.photo.url(:thumb)) %>
-	<%= link_to "delete", photo, method: :delete, data: { confirm: "この写真を削除します" }, title: photo.id %>
+	<%= link_to "削除", photo, method: :delete, data: { confirm: "この写真を削除します" }, title: photo.id %>
 	<br />
 	<br />
   <% end %>
   <div class="actions">
-	<button type="submit" class="btn btn-large btn-warning">Save</button>
+	<button type="submit" class="btn btn-large btn-warning">アルバム作成</button>
   </div>
 <% end %>
 

@@ -10,7 +10,7 @@
   </aside>
   <div class="span8">
     <% if @user.albums.any? %>
-      <h3>Albums (<%= @user.albums.count %>)</h3>
+      <h3><%= @user.name %>のアルバム一覧 (<%= @user.albums.count %>)</h3>
       <ol class="albums">
         <%= render @albums %>
       </ol>
@@ -21,7 +21,7 @@
 
 <% if signed_in? %>
   <section>
-	<a href="/albums/new" class="btn ">Create Album</a>
+	<a href="/albums/new" class="btn ">アルバム作成</a>
   </section>
 <% else %>
   <div class="center hero-unit">
