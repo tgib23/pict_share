@@ -1,7 +1,7 @@
 #coding: utf-8
 
 class NoticeMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "satoshi@pictcollect.dip.jp"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

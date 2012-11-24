@@ -21,7 +21,7 @@ class Photo < ActiveRecord::Base
      :thumb=> "100x100#", },
   :convert_options => { :all => '-auto-orient' },
 	:hash_secret => "longSecretString",
-	:url => "/system/pict_share/:path/:attachment/:id/:style/:basename.:extension"
+	:url => "/system/pict_share/:path/:attachment/:id/:style/:id_:basename.:extension"
 #    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:hash.:extension" ## attachementがphoto, idが勝手につく
 #    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:basename.:extension" ## attachementがphoto, idが勝手につく
 	validates_attachment_presence :photo
