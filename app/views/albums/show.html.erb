@@ -12,7 +12,7 @@
 </p>
 
 <p>
-  <b><%= link_to 'Zip', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip' %>:</b>
+  <b><%= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip' %>:</b>
   Total <%= @album.photos.count %> pics
   <% if @album.photos.count > 0 %>
     / Last Update
@@ -45,13 +45,15 @@
 	<% @album.photos.each do |photo| %>
 	  <li>
 	    <%#= image_tag(photo.photo.url(:large)) %>
-	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
+	    <%#= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
+	    <%= image_tag(photo.photo.url(:large)) %>
 	  </li>
 	<% end %>
  </ul>
 </div>
 
 <br /><br /><br /><br /><br />
+<% if (!current_user.nil? && current_user.id == @album.user_id) || @album.ncc == 0 || @album.ncc == 2 %>
 <input type="file" name="uploadify" id="uploadify" />
 <input type="hidden" name="aid" value="<%= @album.id %>" />
 </center>
@@ -60,6 +62,8 @@
 <%= javascript_include_tag 'jquery.uploadify.v2.1.0.min' %>
 <%- session_key = Rails.application.config.session_options[:key] -%>
 <br />
+<% end %>
+
 
 <script type="text/javascript">
 $(function() {

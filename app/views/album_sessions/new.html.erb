@@ -1,17 +1,17 @@
-<% provide(:title, "Album Sign in") %>
-<h1>Album Sign in</h1>
+<% provide(:title, "Album Signin - ") %>
+<h1>アルバムログイン</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(:album_session, url: album_sessions_path) do |f| %>
 
-	  <%= f.label :id %>
+	  <%= f.label :id, "アルバムID" %>
 	  <%= f.text_field :id %>
 
-	  <%= f.label :password %>
+	  <%= f.label :password, "パスワード" %>
 	  <%= f.password_field :password %>
 
-	  <%= f.submit "Album Sign in", class: "btn btn-large btn-primary" %>
+	  <%= f.submit "アルバムログイン", class: "btn btn-large btn-primary" %>
 	<% end %>
 
   </div>

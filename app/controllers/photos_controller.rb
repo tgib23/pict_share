@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
         com += "/home/satoshi/rails/pict_share/public/system/pict_share/"
         com += "#{@album.id}_#{@album.name}_#{@album.directory_strings}/photos/"
         com += "#{photok.id}"
-        com += "/original/#{photok.photo.original_filename} "
+        com += "/original/#{photok.id}_#{photok.photo.original_filename} "
       end
       #@album.save
 			`#{rmcom_com}`
