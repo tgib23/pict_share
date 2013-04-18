@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :create, :destroy, :edit]
+  before_filter :signed_in_user, only: [:index, :create, :destroy, :edit, :add_photos]
   # GET /albums
   # GET /albums.json
   def index
@@ -65,13 +65,18 @@ class AlbumsController < ApplicationController
 #    @album = Album.new(params[:album])
 	@album = current_user.albums.build(params[:album])
 	@album.revision = 0
+	@album.password = "password"
+	@album.password_confirmation = "password"
+  	`echo album create #{@album.id} , #{@album.password} >> /tmp/debuglog`
 
     respond_to do |format|
       if @album.save
 	    sign_album_in @album
+		"album save success"
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
       else
+		puts "album save fail"
         format.html { render action: "new" }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
@@ -83,16 +88,40 @@ class AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
 
+  	`echo album update #{@album.id} , #{@album.password} >> /tmp/debuglog`
     respond_to do |format|
-      if @album.update_attributes(params[:album])
+      if @album.update_attributes!(params[:album])
+  		`echo attributes ok #{@album.id} , #{@album.password} >> /tmp/debuglog`
+	@album.password = "password"
+	@album.password_confirmation = "password"
 	    sign_album_in @album
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
         format.json { head :no_content }
       else
+  		`echo attributes not ok #{@album.id} , #{@album.password} >> /tmp/debuglog`
         format.html { render action: "edit" }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # PUT /add_photos/2
+  def add_photos
+    @album = Album.find(params[:id])
+	files = params[:album]["photos_attributes"]
+	i = 0
+	files.size.times do
+	  photo = Photo.new(:photo => files[i]["photo"], :album_id => @album.id)
+	  photo.save!
+      `echo add_photos #{params[:id]} #{@album.name} #{files.size} photo.id = #{photo.id} album.id = #{photo.album_id} >> /tmp/debuglog`
+	  i += 1
+	end
+
+    sign_album_in @album
+	respond_to do |format|
+      format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+      format.json { head :no_content }
+	end
   end
 
   # DELETE /albums/1

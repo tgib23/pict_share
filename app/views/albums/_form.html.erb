@@ -22,7 +22,7 @@
 	<%= f.radio_button :ncc, 2, { :checked => true } %> &nbsp &nbsp ログインユーザに参照・追加を許す（パスワードの入力が必要です）<br />
 	<%= f.radio_button :ncc, 3 %> &nbsp &nbsp ログインユーザに参照のみ許す（パスワードの入力が必要です）<br /><br />
 	<%= f.label :password, "パスワード" %>
-	<%= f.password_field :password  %>
+	<%= f.password_field :password %>
 	<%= f.label :confirmation, "パスワード（確認用)" %>
 	<%= f.password_field :password_confirmation %>
   </div>

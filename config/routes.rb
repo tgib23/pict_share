@@ -25,6 +25,11 @@ PicShare::Application.routes.draw do
 resources :photos,:only => [:index, :create, :destroy]
   root :to => 'users#index'
 
+  resources :albums do
+    member do
+      put 'add_photos'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

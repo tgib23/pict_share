@@ -12,16 +12,16 @@
 </p>
 
 <p>
-  <b><%= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip' %>:</b>
-  Total <%= @album.photos.count %> pics
-  <% if @album.photos.count > 0 %>
+  <b><%#= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip' %>:</b>
+  Total <%#= @album.photos.count %> pics
+  <%# if @album.photos.count > 0 %>
     / Last Update
-    <%=@album.photos.last.updated_at %>
-  <% end %>
+    <%#=@album.photos.last.updated_at %>
+  <%# end %>
 </p>
-<% if !current_user.nil? && @album.user_id == current_user.id %>
-  <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
-<% end %>
+<%# if !current_user.nil? && @album.user_id == current_user.id %>
+  <%#= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
+<%# end %>
 
 
 
@@ -44,9 +44,10 @@
   <ul class="slides">
 	<% @album.photos.each do |photo| %>
 	  <li>
+	    maisuu
 	    <%#= image_tag(photo.photo.url(:large)) %>
-	    <%#= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
-	    <%= image_tag(photo.photo.url(:large)) %>
+	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
+	    <%#= image_tag(photo.photo.url(:large)) %>
 	  </li>
 	<% end %>
  </ul>
@@ -54,35 +55,21 @@
 
 <br /><br /><br /><br /><br />
 <% if (!current_user.nil? && current_user.id == @album.user_id) || @album.ncc == 0 || @album.ncc == 2 %>
-<input type="file" name="uploadify" id="uploadify" />
 <input type="hidden" name="aid" value="<%= @album.id %>" />
 </center>
-<div id="file_queue"></div>
-<%= javascript_include_tag 'swfobject' %>
-<%= javascript_include_tag 'jquery.uploadify.v2.1.0.min' %>
-<%- session_key = Rails.application.config.session_options[:key] -%>
-<br />
 <% end %>
-
-
-<script type="text/javascript">
-$(function() {
- var uploader = $("#uploadify");
- uploader.uploadify({
- 'uploader'       : '/javascripts/uploadify.swf',
- 'script'         : '/photos',
- 'queueID'        : 'file_queue',
- 'buttonText'     : 'Choose Photo',
- 'cancelImg'      : '/images/cancel.png',
- 'auto'           : true,
- 'multi'          : true,
- 'scriptData'     : {
-   '_method'            : 'post',
-   'aid'                : '<%= @album.id %>',
-   '<%= session_key %>' : encodeURIComponent('<%=u cookies["_session_id"] %>'),
-   'authenticity_token' : encodeURIComponent('<%=u form_authenticity_token %>')
- }
- });
-});
-</script>
-
+password
+<% @album.password = "password" %>
+<% @album.password_confirmation = "password" %>
+name again
+<%= @album.name %>
+<%= form_for @album, :url => {:action => 'add_photos'}, :html => { :multipart => true } do |f| %>
+<%#= form_for @album, :html => { :multipart => true } do |f| %>
+  <input type="hidden" name="aid" value="<%= @album.id %>" />
+  <%= file_field_tag('album_photos_photo', multiple: true, name: "album[photos_attributes][][photo]") %>
+  <!--
+  <input type="password" id="album_password" name="password" value="password" />
+  <input type="password" id="album_password_confirmation" name="password_confirmation" value="password" />
+  -->
+	<%= f.button :submit %>
+<% end %>
