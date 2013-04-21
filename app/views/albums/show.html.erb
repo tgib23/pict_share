@@ -13,15 +13,15 @@
 
 <p>
   <b><%#= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip' %>:</b>
-  Total <%#= @album.photos.count %> pics
-  <%# if @album.photos.count > 0 %>
+  Total <%= @album.photos.count %> pics
+  <% if @album.photos.count > 0 %>
     / Last Update
-    <%#=@album.photos.last.updated_at %>
-  <%# end %>
+    <%=@album.photos.last.updated_at %>
+  <% end %>
 </p>
-<%# if !current_user.nil? && @album.user_id == current_user.id %>
-  <%#= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
-<%# end %>
+<% if !current_user.nil? && @album.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
+<% end %>
 
 
 
@@ -44,7 +44,6 @@
   <ul class="slides">
 	<% @album.photos.each do |photo| %>
 	  <li>
-	    maisuu
 	    <%#= image_tag(photo.photo.url(:large)) %>
 	    <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
 	    <%#= image_tag(photo.photo.url(:large)) %>
