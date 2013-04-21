@@ -51,24 +51,14 @@
 	<% end %>
  </ul>
 </div>
+</center>
 
 <br /><br /><br /><br /><br />
 <% if (!current_user.nil? && current_user.id == @album.user_id) || @album.ncc == 0 || @album.ncc == 2 %>
-<input type="hidden" name="aid" value="<%= @album.id %>" />
-</center>
-<% end %>
-password
-<% @album.password = "password" %>
-<% @album.password_confirmation = "password" %>
-name again
-<%= @album.name %>
-<%= form_for @album, :url => {:action => 'add_photos'}, :html => { :multipart => true } do |f| %>
-<%#= form_for @album, :html => { :multipart => true } do |f| %>
+  <%= form_for @album, :url => {:action => 'add_photos'}, :html => { :multipart => true } do |f| %>
   <input type="hidden" name="aid" value="<%= @album.id %>" />
   <%= file_field_tag('album_photos_photo', multiple: true, name: "album[photos_attributes][][photo]") %>
-  <!--
-  <input type="password" id="album_password" name="password" value="password" />
-  <input type="password" id="album_password_confirmation" name="password_confirmation" value="password" />
-  -->
-	<%= f.button :submit %>
+  <%= f.button :submit %>
+  <% end %>
 <% end %>
+
