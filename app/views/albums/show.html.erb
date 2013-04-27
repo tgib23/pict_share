@@ -54,11 +54,32 @@
 </center>
 
 <br /><br /><br /><br /><br />
+
+
 <% if (!current_user.nil? && current_user.id == @album.user_id) || @album.ncc == 0 || @album.ncc == 2 %>
+
   <%= form_for @album, :url => {:action => 'add_photos'}, :html => { :multipart => true } do |f| %>
   <input type="hidden" name="aid" value="<%= @album.id %>" />
-  <%= file_field_tag('album_photos_photo', multiple: true, name: "album[photos_attributes][][photo]") %>
-  <%= f.button :submit %>
+  <%= file_field_tag('album_photos_photo', multiple: true, name: "files[]") %>
+  <button type="submit" class="btn btn-primary">アップロード</button>
   <% end %>
 <% end %>
 
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate.toLocaleDateString(), '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('album_photos_photo').addEventListener('change', handleFileSelect, false);
+</script>

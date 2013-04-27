@@ -13,6 +13,7 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+gem 'jquery-fileupload-rails'
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
 

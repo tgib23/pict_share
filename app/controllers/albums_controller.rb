@@ -108,10 +108,10 @@ class AlbumsController < ApplicationController
   # PUT /add_photos/2
   def add_photos
     @album = Album.find(params[:id])
-	files = params[:album]["photos_attributes"]
+	files = params[:files]
 	i = 0
 	files.size.times do
-	  photo = Photo.new(:photo => files[i]["photo"], :album_id => @album.id)
+	  photo = Photo.new(:photo => files[i], :album_id => @album.id)
 	  photo.save!
       `echo add_photos #{params[:id]} #{@album.name} #{files.size} photo.id = #{photo.id} album.id = #{photo.album_id} >> /tmp/debuglog`
 	  i += 1
@@ -119,7 +119,7 @@ class AlbumsController < ApplicationController
 
     sign_album_in @album
 	respond_to do |format|
-      format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+      format.html { redirect_to @album, notice: "#{files.size} photos were successfully uploaded." }
       format.json { head :no_content }
 	end
   end
