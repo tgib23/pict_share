@@ -116,7 +116,6 @@ class AlbumsController < ApplicationController
       `echo add_photos #{params[:id]} #{@album.name} #{files.size} photo.id = #{photo.id} album.id = #{photo.album_id} >> /tmp/debuglog`
 	  i += 1
 	end
-
     sign_album_in @album
 	respond_to do |format|
       format.html { redirect_to @album, notice: "#{files.size} photos were successfully uploaded." }

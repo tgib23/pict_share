@@ -55,17 +55,27 @@
 
 <br /><br /><br /><br /><br />
 
+<style type="text/css">
+.bar {
+  height: 18px;
+  background: green:
+}
+</style>
 
 <% if (!current_user.nil? && current_user.id == @album.user_id) || @album.ncc == 0 || @album.ncc == 2 %>
 
+  <%#= form_for @album, :url => {:action => 'add_photos'}, :remote => true, :html => { :multipart => true }, class: "btn btn-primary" do |f| %>
   <%= form_for @album, :url => {:action => 'add_photos'}, :html => { :multipart => true } do |f| %>
-  <input type="hidden" name="aid" value="<%= @album.id %>" />
   <%= file_field_tag('album_photos_photo', multiple: true, name: "files[]") %>
-  <button type="submit" class="btn btn-primary">アップロード</button>
+  <output id="list"></output>
+  <button id="submit_button" type="submit" class="btn btn-primary">アップロード</button>
   <% end %>
+  <!-- The global progress information -->
+  <div id="progress">
+    <div class="bar" style="width: 0%;"></div>
+  </div>
 <% end %>
 
-<output id="list"></output>
 
 <script>
   function handleFileSelect(evt) {
@@ -75,11 +85,27 @@
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
       output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '</li>');
+                  Math.floor(f.size / 1024), 'KB, last modified: ',
+                  f.lastModifiedDate.toLocaleDateString(), '</li>'
+                 );
     }
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
   }
 
   document.getElementById('album_photos_photo').addEventListener('change', handleFileSelect, false);
+//  document.getElementById('submit_button').addEventListener('click', handleFileSelect, false);
+
+//  function handleSubmitButton(
+/*
+  $('#album_photos_photo').fileupload({
+    progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .bar').css(
+            'width',
+            progress + '%'
+        );
+    }
+    document.getElementById('list2').innerHTML = '<ul>yes</ul>';
+  });
+*/
 </script>
