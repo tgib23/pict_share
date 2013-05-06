@@ -67,8 +67,8 @@
   <%#= form_for @album, :url => {:action => 'add_photos'}, :remote => true, :html => { :multipart => true }, class: "btn btn-primary" do |f| %>
   <%= form_for @album, :url => {:action => 'add_photos'}, :html => { :multipart => true } do |f| %>
   <%= file_field_tag('album_photos_photo', multiple: true, name: "files[]") %>
+  <output id="submit_button"></output>
   <output id="list"></output>
-  <button id="submit_button" type="submit" class="btn btn-primary">アップロード</button>
   <% end %>
   <!-- The global progress information -->
   <div id="progress">
@@ -79,6 +79,7 @@
 
 <script>
   function handleFileSelect(evt) {
+    document.getElementById('submit_button').innerHTML = '<button type="submit" class="btn btn-primary">アップロード</button>';
     var files = evt.target.files; // FileList object
 
     // files is a FileList of File objects. List some properties.
