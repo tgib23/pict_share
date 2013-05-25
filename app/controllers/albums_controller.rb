@@ -138,6 +138,7 @@ class AlbumsController < ApplicationController
 
   # update zip file
   def update_zip(album_id)
+    `echo update zip with #{@album.id} , #{@album.password} >> /tmp/debuglog`
     @album = Album.find(album_id)
     rmzip_com = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip"
     rmcom_com = "rm /tmp/album_job_queue/*_#{@album.id}_*"
@@ -147,8 +148,7 @@ class AlbumsController < ApplicationController
       com += "/home/satoshi/rails/pict_share/public/system/pict_share/"
       com += "#{@album.id}_#{@album.name}_#{@album.directory_strings}/photos/"
       com += "#{photok.id}"
-#      com += "/original/#{photok.id}_#{photok.photo.original_filename} "
-      com += "/original/#{photok.id}"
+      com += "/original/#{photok.id}_#{photok.photo.original_filename} "
     end
     `#{rmcom_com}`
     `echo #{rmzip_com} >> /tmp/album_job_queue/#{Time.now.strftime("%m%d%H%M")}_#{@album.id}_queue`
