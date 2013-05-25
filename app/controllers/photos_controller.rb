@@ -5,26 +5,10 @@ class PhotosController < ApplicationController
 
   def create
 #    photo = Photo.new(:uploaded_file => params[:Filedata], :album_id => params[:aid])
-	`echo create photo #{params[:aid]} toreteru >> /tmp/debuglog`
+    `echo create photo #{params[:aid]} toreteru >> /tmp/debuglog`
     photo = Photo.new(:photo => params[:album][:photos_attributes][:photo], :album_id => params[:aid])
 #    photo = Photo.new(:album_id => params[:aid])
     if photo.save!
-      @album = Album.find(params[:aid])
-			rmzip_com = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip"
-			rmcom_com = "rm /tmp/album_job_queue/*_#{@album.id}_*"
-      com = "/usr/bin/zip -j "
-      com += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip "
-      @album.photos.each do |photok|
-        com += "/home/satoshi/rails/pict_share/public/system/pict_share/"
-        com += "#{@album.id}_#{@album.name}_#{@album.directory_strings}/photos/"
-        com += "#{photok.id}"
-#        com += "/original/#{photok.id}_#{photok.photo.original_filename} "
-        com += "/original/#{photok.id}"
-      end
-      #@album.save
-			`#{rmcom_com}`
-			`echo #{rmzip_com} >> /tmp/album_job_queue/#{Time.now.strftime("%m%d%H%M")}_#{@album.id}_queue`
-      `echo #{com} >> /tmp/album_job_queue/#{Time.now.strftime("%m%d%H%M")}_#{@album.id}_queue`
       render :json => {"status" => "OK"}
     else
       render :json => {"status" => "PHOTO SAVE NG"}

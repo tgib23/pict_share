@@ -28,9 +28,9 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-fileupload-rails'
 end
 
+gem 'jquery-fileupload-rails'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

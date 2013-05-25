@@ -40,7 +40,13 @@
 	<br />
   <% end %>
   <div class="actions">
-	<button type="submit" class="btn btn-large btn-warning">アルバム作成</button>
+	<button type="submit" class="btn btn-large btn-warning">
+    <% if @album.directory_strings.nil? %>
+      アルバム作成
+    <% else %>
+      アルバム更新
+    <% end %>
+	</button>
   </div>
 <% end %>
 
