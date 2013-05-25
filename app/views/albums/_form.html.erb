@@ -16,37 +16,37 @@
     <%= f.text_field :name %>
     <%= f.label :memo, "メモ" %>
     <%= f.text_area :content , :cols => "30", :rows => "3" %>
-	<%= f.label :control, "管理レベル" %>
-  <%= f.radio_button :ncc, 0 %> &nbsp &nbsp  ノンログインユーザに参照・追加を許す <br />
-	<%= f.radio_button :ncc, 1 %> &nbsp &nbsp ノンログインユーザに参照のみ許す<br />
-	<%= f.radio_button :ncc, 2, { :checked => true } %> &nbsp &nbsp ログインユーザに参照・追加を許す（パスワードの入力が必要です）<br />
-	<%= f.radio_button :ncc, 3 %> &nbsp &nbsp ログインユーザに参照のみ許す（パスワードの入力が必要です）<br /><br />
-	<%= f.label :password, "パスワード" %>
-	<%= f.password_field :password %>
-	<%= f.label :confirmation, "パスワード（確認用)" %>
-	<%= f.password_field :password_confirmation %>
+    <%= f.label :control, "管理レベル" %>
+    <%= f.radio_button :ncc, 0 %> &nbsp &nbsp  ノンログインユーザに参照・追加を許す <br />
+    <%= f.radio_button :ncc, 1 %> &nbsp &nbsp ノンログインユーザに参照のみ許す<br />
+    <%= f.radio_button :ncc, 2, { :checked => true } %> &nbsp &nbsp ログインユーザに参照・追加を許す（パスワードの入力が必要です）<br />
+    <%= f.radio_button :ncc, 3 %> &nbsp &nbsp ログインユーザに参照のみ許す（パスワードの入力が必要です）<br /><br />
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password %>
+    <%= f.label :confirmation, "パスワード（確認用)" %>
+    <%= f.password_field :password_confirmation %>
   </div>
   <div class="field">
-  	<% if @album.directory_strings.nil? %>
-  		<%= f.hidden_field :directory_strings, :value => Digest::MD5.hexdigest(current_user.id.to_s) %>
-    <% else %>
-		<%= f.hidden_field :directory_strings, :value => @album.directory_strings %>
-	<% end %>
+      <% if @album.directory_strings.nil? %>
+        <%= f.hidden_field :directory_strings, :value => Digest::MD5.hexdigest(current_user.id.to_s + rand(100).to_s) %>
+      <% else %>
+        <%= f.hidden_field :directory_strings, :value => @album.directory_strings %>
+      <% end %>
   </div>
   <% @album.photos.each do |photo| %>
-  	<%= image_tag(photo.photo.url(:thumb)) %>
-	<%= link_to "削除", photo, method: :delete, data: { confirm: "この写真を削除します" }, title: photo.id %>
-	<br />
-	<br />
+    <%= image_tag(photo.photo.url(:thumb)) %>
+    <%= link_to "削除", photo, method: :delete, data: { confirm: "この写真を削除します" }, title: photo.id %>
+    <br />
+    <br />
   <% end %>
   <div class="actions">
-	<button type="submit" class="btn btn-large btn-warning">
+    <button type="submit" class="btn btn-large btn-warning">
     <% if @album.directory_strings.nil? %>
       アルバム作成
     <% else %>
       アルバム更新
     <% end %>
-	</button>
+    </button>
   </div>
 <% end %>
 
@@ -54,34 +54,34 @@
 <script type="text/javascript">
 <!--
     $(function() {
-		$("#album_ncc_0").click(function() {
-			$("#album_password").attr("readonly", true);
-			$("#album_password_confirmation").attr("readonly", true);
-			if ($("#album_password").val() == '') {
-				$("#album_password").val("password");
-			}
-			if ($("#album_password_confirmation").val() == '') {
-				$("#album_password_confirmation").val("password");
-			}
-		});
-		$("#album_ncc_1").click(function() {
-			$("#album_password").attr("readonly", true);
-			$("#album_password_confirmation").attr("readonly", true);
-			if ($("#album_password").val() == '') {
-				$("#album_password").val("password");
-			}
-			if ($("#album_password_confirmation").val() == '') {
-				$("#album_password_confirmation").val("password");
-			}
-    	});
-		$("#album_ncc_2").click(function() {
-			$("#album_password").removeAttr("readonly");
-			$("#album_password_confirmation").removeAttr("readonly");
-    	});
-		$("#album_ncc_3").click(function() {
-			$("#album_password").removeAttr("readonly");
-			$("#album_password_confirmation").removeAttr("readonly");
-    	});
-	});
+        $("#album_ncc_0").click(function() {
+            $("#album_password").attr("readonly", true);
+            $("#album_password_confirmation").attr("readonly", true);
+            if ($("#album_password").val() == '') {
+                $("#album_password").val("password");
+            }
+            if ($("#album_password_confirmation").val() == '') {
+                $("#album_password_confirmation").val("password");
+            }
+        });
+        $("#album_ncc_1").click(function() {
+            $("#album_password").attr("readonly", true);
+            $("#album_password_confirmation").attr("readonly", true);
+            if ($("#album_password").val() == '') {
+                $("#album_password").val("password");
+            }
+            if ($("#album_password_confirmation").val() == '') {
+                $("#album_password_confirmation").val("password");
+            }
+        });
+        $("#album_ncc_2").click(function() {
+            $("#album_password").removeAttr("readonly");
+            $("#album_password_confirmation").removeAttr("readonly");
+        });
+        $("#album_ncc_3").click(function() {
+            $("#album_password").removeAttr("readonly");
+            $("#album_password_confirmation").removeAttr("readonly");
+        });
+    });
 // -->
 </script>
