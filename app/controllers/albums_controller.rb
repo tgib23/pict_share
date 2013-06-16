@@ -65,9 +65,6 @@ class AlbumsController < ApplicationController
 #    @album = Album.new(params[:album])
     @album = current_user.albums.build(params[:album])
     @album.revision = 0
-    @album.password = "password"
-    @album.password_confirmation = "password"
-      `echo album create #{@album.id} , #{@album.password} >> /tmp/debuglog`
 
     respond_to do |format|
       if @album.save
@@ -107,21 +104,28 @@ class AlbumsController < ApplicationController
 
   # PUT /add_photos/2
   def add_photos
-    @album = Album.find(params[:id])
+
     files = params[:files]
     i = 0
+    @album = Album.find(params[:id])
     files.size.times do
+	  `echo #{files.size} files >> /tmp/debuglog`
+	  `echo #{files[i].original_filename} files >> /tmp/debuglog`
       photo = Photo.new(:photo => files[i], :album_id => @album.id)
-      photo.save!
-      `echo add_photos #{params[:id]} #{@album.name} #{files.size} photo.id = #{photo.id} album.id = #{photo.album_id} >> /tmp/debuglog`
+	  `echo photo make >> /tmp/debuglog`
+      if photo.save!
+	    `echo photo save success >> /tmp/debuglog`
+      else
+	    `echo photo save fail >> /tmp/debuglog`
+      end
       i += 1
     end
-    update_zip(@album.id)
-    sign_album_in @album
-    respond_to do |format|
-      format.html { redirect_to @album, notice: "#{files.size} photos were successfully uploaded." }
-      format.json { head :no_content }
-    end
+#    update_zip(@album.id)
+#    sign_album_in @album
+#    respond_to do |format|
+#      format.html { redirect_to @album, notice: "#{files.size} photos were successfully uploaded." }
+#      format.json { head :no_content }
+#    end
   end
 
   # DELETE /albums/1

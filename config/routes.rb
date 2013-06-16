@@ -27,7 +27,8 @@ resources :photos,:only => [:index, :create, :destroy]
 
   resources :albums do
     member do
-      put 'add_photos'
+      put 'add_photos', :as => :add_photos
+      post 'add_photos', :as => :add_photos
     end
   end
 
