@@ -120,6 +120,8 @@ class AlbumsController < ApplicationController
       end
       i += 1
     end
+
+    render :js => "window.location = '/albums/#{@album.id}'"
 #    update_zip(@album.id)
 #    sign_album_in @album
 #    respond_to do |format|

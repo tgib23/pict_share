@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= yield(:title) %>PictCollect  </title>
-	<%= favicon_link_tag (source='/fav_pic.ico') %>
+  <%= favicon_link_tag (source='/favicon.ico') %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag "flexslider" %>
   <%= javascript_include_tag "application" %>
@@ -28,10 +28,10 @@
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"> <%= value %> </div>
     <% end %>
-	<span class="label label-warning">このサイトはまだテスト中です</span>
+    <span class="label label-warning">このサイトはまだテスト中です</span>
     <%= yield %>
-	<%= render 'layouts/footer' %>
-	<%#= debug(params) if Rails.env.development? %>
+    <%= render 'layouts/footer' %>
+    <%#= debug(params) if Rails.env.development? %>
   </div>
 
 </body>
