@@ -124,6 +124,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack
   annotate (~> 2.4.1.beta)
   bcrypt-ruby (~> 3.0.1)
   bootstrap-sass (= 2.0.0)
