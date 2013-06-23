@@ -77,25 +77,12 @@
   <%= form_for @album, :url => {:action => 'add_photos'}, :remote => true, class: "btn btn-primary" do |f| %>
     <%= file_field_tag('album_photos_photo', multiple: true, name: "files[]") %>
     <div class="actions">
-    <%#= submit_tag "Import Data" %>
-      <%#= f.submit %>
     <output id="submit_button"></output>
+    <output id="bar"></output>
     <output id="list"></output>
     </div>
   <% end %>
-  <div id="uploading">
-    <div id="progress" class="bar">
-      <div id="progressbar">&nbsp;</div>
-      <div id="percents"></div>
-    </div>
-  </div>
 
-  <!-- The global progress information -->
-  <!--
-  <div id="progress" class="bar">
-    <div class="bar" style="width: 0%;"></div>
-  </div>
-  -->
 <% end %>
 <br />
 
@@ -113,6 +100,7 @@
                   f.lastModifiedDate.toLocaleDateString(), '</li>'
                  );
     }
+    document.getElementById('bar').innerHTML = '<div id="uploading"><div id="progress" class="bar"><div id="progressbar">&nbsp;</div><div id="percents"></div></div></div>';
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
   }
   document.getElementById('album_photos_photo').addEventListener('change', handleFileSelect, false);
