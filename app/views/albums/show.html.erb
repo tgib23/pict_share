@@ -104,21 +104,7 @@
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
   }
   document.getElementById('album_photos_photo').addEventListener('change', handleFileSelect, false);
-//  document.getElementById('submit_button').addEventListener('click', handleFileSelect, false);
 
-//  function handleSubmitButton(
-/*
-  $('#album_photos_photo').fileupload({
-    progressall: function (e, data) {
-        var progress = parseInt(data.loaded / data.total * 100, 10);
-        $('#progress .bar').css(
-            'width',
-            progress + '%'
-        );
-    }
-    document.getElementById('list2').innerHTML = '<ul>yes</ul>';
-  });
-*/
 $(function() {
     $('form').uploadProgress({
     /* scripts locations for safari */

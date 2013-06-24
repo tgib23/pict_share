@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :create, :destroy, :edit, :add_photos]
+  before_filter :signed_in_user, only: [:index, :create, :destroy, :edit]
   # GET /albums
   # GET /albums.json
   def index
@@ -17,6 +17,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1.json
   def show
     @album = Album.find(params[:id])
+
     if @album.ncc.nil?
         redirect_to album_signin_path, notice: "Something is wrong with your album(ncc unset)"
     # albumが見れない条件
@@ -105,29 +106,31 @@ class AlbumsController < ApplicationController
   # PUT /add_photos/2
   def add_photos
 
-    files = params[:files]
-    i = 0
     @album = Album.find(params[:id])
-    files.size.times do
-	  `echo #{files.size} files >> /tmp/debuglog`
-	  `echo #{files[i].original_filename} files >> /tmp/debuglog`
-      photo = Photo.new(:photo => files[i], :album_id => @album.id)
-	  `echo photo make >> /tmp/debuglog`
-      if photo.save!
-	    `echo photo save success >> /tmp/debuglog`
-      else
-	    `echo photo save fail >> /tmp/debuglog`
+    if (@album.ncc == 0 ||
+       ( !current_user.nil? && @album.user_id == current_user.id ) ||
+       ( !current_album.nil? && @album.id == current_album.id ) )
+       
+      files = params[:files]
+      i = 0
+      files.size.times do
+        photo = Photo.new(:photo => files[i], :album_id => @album.id)
+        if photo.save!
+  	      `echo photo save success >> /tmp/debuglog`
+        else
+  	      `echo photo save fail >> /tmp/debuglog`
+        end
+        i += 1
       end
-      i += 1
-    end
-
-    render :js => "window.location = '/albums/#{@album.id}'"
+  
+      render :js => "window.location = '/albums/#{@album.id}'"
 #    update_zip(@album.id)
 #    sign_album_in @album
 #    respond_to do |format|
 #      format.html { redirect_to @album, notice: "#{files.size} photos were successfully uploaded." }
 #      format.json { head :no_content }
 #    end
+    end
   end
 
   # DELETE /albums/1
