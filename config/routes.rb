@@ -22,7 +22,8 @@ PicShare::Application.routes.draw do
 #  get "photos/index"
 
 #  get "photos/create"
-resources :photos,:only => [:index, :create, :destroy]
+#  resources :photos,:only => [:index, :create, :destroy]
+  resources :photos,:only => [ :destroy]
   root :to => 'users#index'
 
   resources :albums do
