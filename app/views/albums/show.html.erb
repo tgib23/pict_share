@@ -45,8 +45,9 @@
   <% @album.photos.each do |photo| %>
     <li>
       <%#= image_tag(photo.photo.url(:large)) %>
-      <%= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
-      <%#= image_tag(photo.photo.url(:large)) %>
+      <%#= link_to image_tag(photo.photo.url(:large)), photo.photo.url(:original) %>
+      <%= image_tag(photo.photo.url(:large)) %>
+      <%= link_to "オリジナルサイズでみる", photo.photo.url(:original) %>
     </li>
   <% end %>
  </ul>
