@@ -123,13 +123,8 @@ class AlbumsController < ApplicationController
         i += 1
       end
   
+      update_zip(@album.id)
       render :js => "window.location = '/albums/#{@album.id}'"
-#    update_zip(@album.id)
-#    sign_album_in @album
-#    respond_to do |format|
-#      format.html { redirect_to @album, notice: "#{files.size} photos were successfully uploaded." }
-#      format.json { head :no_content }
-#    end
     end
   end
 
