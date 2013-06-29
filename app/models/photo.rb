@@ -13,8 +13,8 @@
 
 require 'mime/types'
 class Photo < ActiveRecord::Base
-  attr_accessible :album_id, :uploaded_file
-  belongs_to :album
+  attr_accessible :album_id, :uploaded_file, :photo, :photo_file_name
+  belongs_to :album, :polymorphic => true
   has_attached_file :photo,
 	:styles => {
 	   :large => "680x800", 

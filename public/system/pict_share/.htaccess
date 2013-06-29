@@ -1,8 +1,10 @@
 setEnvIf Referer "^http://192\.168\.0\.11" welcome_local
 setEnvIf Referer "^http://pictcollect\.dip\.jp" welcome_out
+setEnvIf Referer "^http://127\.0\.0\.1" welcome_test
 
 order Deny,Allow
 Deny from all
 Allow from env=welcome_local
 Allow from env=welcome_out
+Allow from env=welcome_test
 

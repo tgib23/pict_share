@@ -11,11 +11,11 @@
 </p>
 
 <p>
-  <b><%= link_to 'Zip', '#' %>:</b>
+  <b>アルバム情報:</b>
   Total 3 pics
-    / Last Update 2012-10-08 05:45:16 UTC
+    / Last Update 2012-10-08 05:45:16
 </p>
-<center>
+
 <div class="flexslider">
   <ul class="slides">
 	  <li>
@@ -29,7 +29,7 @@
 	  </li>
  </ul>
 </div>
-</center>
+
 <br />
 <br />
 <br />
@@ -37,14 +37,22 @@
 <strong>PictCollectで写真の共有をもっと簡単に</strong><br />
 レジャー、冠婚葬祭、日々の記録を、アルバムごとにパスワードをつけて保存できます
 </div>
+<% if !request.smart_phone? %>
 <br />
 <br />
+<% end %>
 <center>
 <%= link_to 'アカウント登録はこちらから', signup_path, class: "btn btn-primary btn-large " %>
-<%= link_to 'ログインはこちらから', signin_path, class: "btn btn-large" %>
+<% if request.smart_phone? %>
+  <br /><br /><%= link_to '　　ログインはこちらから　', signin_path, class: "btn btn-large" %>
+<% else %>
+  <%= link_to 'ログインはこちらから', signin_path, class: "btn btn-large" %>
+<% end %>
 </center>
+<% if !request.smart_phone? %>
 <br />
 <br />
+<% end %>
 <% else %>
 <h1>ユーザリスト</h1>
 
