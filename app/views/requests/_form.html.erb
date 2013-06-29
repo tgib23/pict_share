@@ -1,0 +1,33 @@
+<%= form_for(@request) do |f| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  お名前(30文字以内)<br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+  Eメール<br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+  件名(100文字以内)<br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+  お問い合せ内容<br />
+    <%= f.text_area :contents %>
+  </div>
+  <div class="actions">
+  	<button type="submit" class="btn btn-primary">送信</button>
+  </div>
+<% end %>
