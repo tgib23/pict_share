@@ -2,49 +2,56 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "PictCollect", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "ホーム", root_path %></li>
-          <li><%= link_to "ヘルプ", help_path %></li>
-		  <% if signed_album_in? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= current_album.name %> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "アルバム閲覧", current_album %></li>
-                <li><%= link_to "アルバム編集", edit_album_path(current_album) %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "アルバムログアウト", album_signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-		  <% else %>
-		    <li><%= link_to "アルバムログイン", album_signin_path %></li>
-		  <% end %>
-          <% if signed_in? %>
-		    <li><%= link_to "アルバムリスト", albums_path %></li>
-		    <li><%= link_to "ユーザリスト", users_path %></li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= current_user.name %> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "プロフィール", current_user %></li>
-                <li><%= link_to "設定", edit_user_path(current_user) %></li>
-								<li><%= link_to "アルバム作成", new_album_path %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "ログアウト", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "ログイン", signin_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+        <nav>
+          <ul class="nav pull-right">
+            <li><%= link_to "ホーム", root_path %></li>
+            <li><%= link_to "ヘルプ", help_path %></li>
+	        <% if signed_album_in? %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= current_album.name %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "アルバム閲覧", current_album %></li>
+                  <li><%= link_to "アルバム編集", edit_album_path(current_album) %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "アルバムログアウト", album_signout_path, method: "delete" %>
+                  </li>
+                </ul>
+              </li>
+	        <% else %>
+	          <li><%= link_to "アルバムログイン", album_signin_path %></li>
+	        <% end %>
+            <% if signed_in? %>
+	          <li><%= link_to "アルバムリスト", albums_path %></li>
+	          <li><%= link_to "ユーザリスト", users_path %></li>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= current_user.name %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "プロフィール", current_user %></li>
+                  <li><%= link_to "設定", edit_user_path(current_user) %></li>
+	      						<li><%= link_to "アルバム作成", new_album_path %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "ログアウト", signout_path, method: "delete" %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "ログイン", signin_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 </header>

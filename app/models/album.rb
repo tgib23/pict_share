@@ -18,6 +18,8 @@ class Album < ActiveRecord::Base
   before_save :create_remember_a_token
   validates :user_id, presence: true
   validates :name, presence: true, length: {maximum: 50}
+#  validates :password
+#  validates :password_confirmation
   validates :password, presence: true
   validates :password_confirmation, presence: true
   validates :ncc, presence: true
@@ -29,6 +31,12 @@ class Album < ActiveRecord::Base
     tmp = self.revision.to_i + 1
     self.revision = tmp
   end
+
+#  def photos_array=(array)
+#    array.each do |file|
+#	  photos.build(:photo => file)
+#	end
+#  end
 
   private
     def create_remember_a_token
