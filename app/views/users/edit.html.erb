@@ -1,5 +1,9 @@
 <% provide(:title, "Edit user - ") %>
-<h1>プロフィール編集</h1>
+<% if request.smart_phone? %>
+  <h2>プロフィール編集</h2>
+<% else %>
+  <h1>プロフィール編集</h1>
+<% end %>
 
 <div class="row">
   <div class="span6 offset3">

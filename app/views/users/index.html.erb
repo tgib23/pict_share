@@ -54,11 +54,12 @@
 <br />
 <% end %>
 <% else %>
-<h1>ユーザリスト</h1>
 
 <% if request.smart_phone? %>
+  <h2>ユーザリスト</h2>
   <%= will_paginate @users, :page_links => false %>
 <% else %>
+  <h1>ユーザリスト</h1>
   <%= will_paginate @users%>
 <% end %>
 

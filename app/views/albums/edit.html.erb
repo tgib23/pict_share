@@ -1,5 +1,9 @@
 <% provide(:title, 'Edit Album - ') %>
-<h1>アルバム編集</h1>
+<% if request.smart_phone? %>
+  <h2>アルバム編集</h2>
+<% else %>
+  <h1>アルバム編集</h1>
+<% end %>
 
 <%= render 'form' %>
 

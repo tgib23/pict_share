@@ -1,5 +1,9 @@
 <% provide(:title, 'New Album - ') %>
-<h1>アルバム作成</h1>
+<% if request.smart_phone? %>
+  <h2>アルバム作成</h2>
+<% else %>
+  <h1>アルバム作成</h1>
+<% end %>
 
 <%= render 'form' %>
 

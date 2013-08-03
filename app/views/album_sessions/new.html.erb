@@ -1,5 +1,9 @@
 <% provide(:title, "Album Signin - ") %>
+<% if request.smart_phone? %>
+<h2>アルバムログイン</h2>
+<% else %>
 <h1>アルバムログイン</h1>
+<% end %>
 
 <div class="row">
   <div class="span6 offset3">

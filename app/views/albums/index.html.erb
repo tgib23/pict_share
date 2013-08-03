@@ -1,5 +1,9 @@
 <% provide(:title, 'Album List - ') %>
-<h1>アルバムリスト</h1>
+<% if request.smart_phone? %>
+  <h2>アルバムリスト</h2>
+<% else %>
+  <h1>アルバムリスト</h1>
+<% end %>
 
 <% if request.smart_phone? %>
   <%= will_paginate @albums, :page_links => false %>

@@ -1,5 +1,9 @@
 <% provide(:title, "Signin - ") %>
-<h1>ログイン</h1>
+<% if request.smart_phone? %>
+  <h2>ログイン</h2>
+<% else %>
+  <h1>ログイン</h1>
+<% end %>
 
 <div class="row">
   <div class="span6 offset3">
