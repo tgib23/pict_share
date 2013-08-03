@@ -30,9 +30,10 @@
     <% end %>
   <span class="label label-warning">このサイトはまだテスト中です</span>
     <%= yield %>
-  <%= render 'layouts/footer' %>
+  <%#= render 'layouts/footer' %>
   <%#= debug(params) if Rails.env.development? %>
   </div>
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>

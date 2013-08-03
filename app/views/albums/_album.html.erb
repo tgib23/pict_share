@@ -1,10 +1,28 @@
 <li>
-  <span class="name"><%= link_to album.name, album %></span>
-  <span class="content"><%= album.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(album.created_at) %> ago.
-  </span>
-	<span class="btn">
-	<%= link_to "削除", album, method: :delete, data: { confirm: "このアルバムを削除します"}, title: album.id %>
-	</span>
+  <div class="album_id"><%= album.id %>.</div>
+  <div class="album_info">
+    <%= link_to User.find_by_id(album.user_id).name, User.find_by_id(album.user_id) %>
+	<br/>
+    <%= link_to album.name, album %>
+	<br/>
+    <%= album.content %>
+	<br/>
+     Posted <%= time_ago_in_words(album.created_at) %> ago.
+	<br/>
+  </div>
+  <div class="browse">
+    <% if ((album.ncc == 0 || album.ncc == 1) || signed_in? && (current_user.id == album.user_id || current_user.admin == true)) || (!current_album.nil? && (current_album.id == album.id)) %>
+      <%= link_to '閲覧', album, class: "btn"  %>
+    <% else %>
+      <%= link_to 'ログイン', album_signin_path, class: "btn" %>
+    <% end %>
+  </div>
+  <% if (signed_in? && (current_user.id == album.user_id || current_user.admin == true)) %>
+    <div class="edit">
+      <%= link_to '編集', edit_album_path(album), class: "btn" %>
+    </div>
+    <div class="delete">
+      <%= link_to '削除', album, confirm: 'Are you sure?', method: :delete, class: "btn" %>
+    </div>
+  <% end %>
 </li>

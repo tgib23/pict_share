@@ -97,6 +97,8 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
+  padding-left: 10%;
+  padding-right: 10%;
   border-top: 1px solid #eee;
   color: #999;
   a {
@@ -203,7 +205,22 @@ input, textarea, select, .uneditable-input {
   li {
   	padding: 10px 0;
 	border-top: 1px solid #e8e8e8;
+    margin-bottom: 3%;
   }
+   .album_id {
+     float:left;
+     clear:left;
+     padding-right: 3%;
+     width:5%;
+   }
+   .album_info {
+     float:left;
+     width:60%;
+     padding-right: 5%;
+//     padding-bottom: 5%;
+   }
+   .browse {
+   }
 }
 .name {
   display: block;

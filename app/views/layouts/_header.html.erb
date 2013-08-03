@@ -12,7 +12,7 @@
           <ul class="nav pull-right">
             <li><%= link_to "ホーム", root_path %></li>
             <li><%= link_to "ヘルプ", help_path %></li>
-	        <% if signed_album_in? %>
+            <% if signed_album_in? %>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%= current_album.name %> <b class="caret"></b>
@@ -26,12 +26,12 @@
                   </li>
                 </ul>
               </li>
-	        <% else %>
-	          <li><%= link_to "アルバムログイン", album_signin_path %></li>
-	        <% end %>
+            <% else %>
+              <li><%= link_to "アルバムログイン", album_signin_path %></li>
+            <% end %>
             <% if signed_in? %>
-	          <li><%= link_to "アルバムリスト", albums_path %></li>
-	          <li><%= link_to "ユーザリスト", users_path %></li>
+              <li><%= link_to "アルバムリスト", albums_path %></li>
+              <li><%= link_to "ユーザリスト", users_path %></li>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%= current_user.name %> <b class="caret"></b>
@@ -39,7 +39,7 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "プロフィール", current_user %></li>
                   <li><%= link_to "設定", edit_user_path(current_user) %></li>
-	      						<li><%= link_to "アルバム作成", new_album_path %></li>
+                  <li><%= link_to "アルバム作成", new_album_path %></li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to "ログアウト", signout_path, method: "delete" %>

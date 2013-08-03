@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
 #    @albums = Album.all
-    @albums = Album.paginate(page: params[:page])
+    @albums = Album.paginate(page: params[:page], :per_page => 10)
 #    @tmp = current_album
 
     respond_to do |format|
