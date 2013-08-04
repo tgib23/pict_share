@@ -1,8 +1,13 @@
 <% provide(:title, 'サイトポリシー - ') %>
 
+<% if request.smart_phone? %>
+  <h2>ポリシー</h2>
+<% else %>
+  <h1>ポリシー</h1>
+<% end %>
+
 <div class="hero-unit">
 	<div class="title">
-	<h2>サイトポリシー</h2>
 
 	</div>
 
