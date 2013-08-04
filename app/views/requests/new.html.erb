@@ -1,10 +1,12 @@
 <% provide(:title, 'お問い合わせ - ') %>
 
-<div class="hero-unit">
-	<div class="title">
-	<h2>お問い合せフォーム</h2>
+<% if request.smart_phone? %>
+  <h2>お問い合せフォーム</h2>
+<% else %>
+  <h1>お問い合せフォーム</h1>
+<% end %>
 
-	</div>
+<div class="hero-unit">
 
 	<div class="content">
 	※ 以下の項目すべてにご記入ください

@@ -1,9 +1,11 @@
 <% provide(:title, 'ヘルプ - ') %>
-<div class="hero-unit">
-	<div class="title">
-	<h2>ヘルプ</h2>
 
-	</div>
+<% if request.smart_phone? %>
+  <h2>ヘルプ</h2>
+<% else %>
+  <h1>ヘルプ</h1>
+<% end %>
+<div class="hero-unit">
 
 	<div class="content">
 	<p>
