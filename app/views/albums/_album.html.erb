@@ -24,5 +24,12 @@
     <div class="delete">
       <%= link_to '削除', album, confirm: 'Are you sure?', method: :delete, class: "btn" %>
     </div>
+  <% else %>
+    <div class="edit">
+      <br />
+    </div>
+    <div class="delete">
+      <br />
+    </div>
   <% end %>
 </li>
