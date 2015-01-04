@@ -17,7 +17,8 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jpmobile'
 gem 'actionpack'
 gem 'remotipart', '~> 1.0'
-
+gem 'resque'
+gem 'daemon-spawn', :require => 'daemon_spawn'
 gem 'annotate', '~> 2.4.1.beta', group: :development
 gem 'rake_shared_context', group: :development
 gem 'rspec', group: :development
