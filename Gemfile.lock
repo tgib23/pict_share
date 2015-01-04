@@ -144,6 +144,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   bootstrap-will_paginate (= 0.0.6)
   coffee-rails (~> 3.2.1)
+  diff-lcs
   faker (= 1.0.1)
   jpmobile
   jquery-fileupload-rails
