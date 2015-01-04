@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AlbumsController < ApplicationController
   before_filter :signed_in_user, only: [:index, :create, :destroy, :edit]
   # GET /albums
@@ -142,15 +143,15 @@ class AlbumsController < ApplicationController
 
   # update zip file
   def update_zip(album_id)
-    `echo update zip with #{@album.id} , #{@album.password} >> /tmp/debuglog`
+    `echo update zip with #{@album.id} , #{@album.name}, #{@album.password} >> /tmp/debuglog`
     @album = Album.find(album_id)
-    rmzip_com = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip"
+    rmzip_com = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip"
     rmcom_com = "rm /tmp/album_job_queue/*_#{@album.id}_*"
     com = "/usr/bin/zip -j "
-    com += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.name}_#{@album.directory_strings}.zip "
+    com += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip "
     @album.photos.each do |photok|
       com += "/home/satoshi/rails/pict_share/public/system/pict_share/"
-      com += "#{@album.id}_#{@album.name}_#{@album.directory_strings}/photos/"
+      com += "#{@album.id}_#{@album.directory_strings}/photos/"
       com += "#{photok.id}"
       com += "/original/#{photok.id}_#{photok.photo.original_filename} "
     end

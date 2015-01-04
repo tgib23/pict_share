@@ -19,6 +19,8 @@ gem 'actionpack'
 gem 'remotipart', '~> 1.0'
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
+gem 'rake_shared_context', group: :development
+gem 'rspec', group: :development
 
 # Gems used only for assets and not required
 # in production environments by default.
