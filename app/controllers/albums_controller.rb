@@ -142,21 +142,20 @@ class AlbumsController < ApplicationController
   end
 
   # update zip file
+  # send unix command to resque
   def update_zip(album_id)
-    `echo update zip with #{@album.id} , #{@album.name}, #{@album.password} >> /tmp/debuglog`
+
     @album = Album.find(album_id)
-    rmzip_com = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip"
-    rmcom_com = "rm /tmp/album_job_queue/*_#{@album.id}_*"
-    com = "/usr/bin/zip -j "
-    com += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip "
+    rmzip_command = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip"
+    zip_command = "/usr/bin/zip -j "
+    zip_command += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip "
     @album.photos.each do |photok|
-      com += "/home/satoshi/rails/pict_share/public/system/pict_share/"
-      com += "#{@album.id}_#{@album.directory_strings}/photos/"
-      com += "#{photok.id}"
-      com += "/original/#{photok.id}_#{photok.photo.original_filename} "
+      zip_command += "/home/satoshi/rails/pict_share/public/system/pict_share/"
+      zip_command += "#{@album.id}_#{@album.directory_strings}/photos/"
+      zip_command += "#{photok.id}"
+      zip_command += "/original/#{photok.id}_#{photok.photo.original_filename} "
     end
-    `#{rmcom_com}`
-    `echo #{rmzip_com} >> /tmp/album_job_queue/#{Time.now.strftime("%m%d%H%M")}_#{@album.id}_queue`
-     `echo #{com} >> /tmp/album_job_queue/#{Time.now.strftime("%m%d%H%M")}_#{@album.id}_queue`
+    Resque.enqueue(Archive, rmzip_command)
+    Resque.enqueue(Archive, zip_command)
   end
 end
