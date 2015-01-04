@@ -20,7 +20,7 @@
   <% end %>
 </p>
 <% if !request.smart_phone? %>
- <%= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.name + '_' + @album.directory_strings + '.zip', class: "btn btn-link" %>
+ <%= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.directory_strings + '.zip', class: "btn btn-link" %>
 <% end %>
 <% if !current_user.nil? && @album.user_id == current_user.id %>
   <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
