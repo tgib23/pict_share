@@ -4,7 +4,7 @@ class AlbumSessionsController < ApplicationController
   end
 
   def create
-    album = Album.find_by_id(params[:album_session][:id])
+    album = Album.where(id: params[:album_session][:id]).first
 	if album && album.authenticate(params[:album_session][:password])
 	  sign_album_in album
 	  redirect_to album
