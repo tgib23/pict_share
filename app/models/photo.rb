@@ -23,6 +23,7 @@ class Photo < ActiveRecord::Base
 	:url => "/system/pict_share/:path/:attachment/:id/:style/:id_:basename.:extension"
 #    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:hash.:extension" ## attachementがphoto, idが勝手につく
 #    :path => ":rails_root/public/system/pict_share/:attachment/:id/:style/:basename.:extension" ## attachementがphoto, idが勝手につく
+    validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	validates_attachment_presence :photo
 	validates_attachment_size :photo, :less_than => 20.megabytes
 #	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/JPG'] ## うまく動かない

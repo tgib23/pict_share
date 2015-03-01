@@ -28,8 +28,9 @@ PicShare::Application.routes.draw do
 
   resources :albums do
     member do
-      put 'add_photos', :as => :add_photos
-      post 'add_photos', :as => :add_photos
+#      put 'add_photos', :as => :add_photos
+#      post 'add_photos', :as => :add_photos
+      patch 'add_photos', :as => :add_photos
     end
   end
 

@@ -24,20 +24,11 @@ gem 'rake_shared_context', group: :development
 gem 'rspec', group: :development
 gem 'diff-lcs'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
-  gem 'uglifier'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 
 gem 'jquery-fileupload-rails'
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
@@ -48,7 +39,6 @@ gem 'bcrypt-ruby'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
 gem 'capistrano'
 
 # To use debugger
