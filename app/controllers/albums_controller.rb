@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class AlbumsController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :create, :destroy, :edit]
+  before_action :signed_in_user, only: [:index, :create, :destroy, :edit]
   # GET /albums
   # GET /albums.json
   def index
@@ -65,7 +65,7 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
 #    @album = Album.new(params[:album])
-    @album = current_user.albums.build(params[:album])
+    @album = current_user.albums.build(album_params)
     @album.revision = 0
 
     respond_to do |format|
@@ -88,7 +88,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     `echo album update #{@album.id} , #{@album.password} >> /tmp/debuglog`
     respond_to do |format|
-      if @album.update_attributes!(params[:album])
+      if @album.update_attributes!(album_params)
         `echo attributes ok #{@album.id} , #{@album.password} >> /tmp/debuglog`
         @album.password = "password"
         @album.password_confirmation = "password"
@@ -111,7 +111,7 @@ class AlbumsController < ApplicationController
     if (@album.ncc == 0 ||
        ( !current_user.nil? && @album.user_id == current_user.id ) ||
        ( !current_album.nil? && @album.id == current_album.id ) )
-       
+
       files = params[:files]
       i = 0
       files.size.times do
@@ -123,7 +123,7 @@ class AlbumsController < ApplicationController
         end
         i += 1
       end
-  
+
       update_zip(@album.id)
       render :js => "window.location = '/albums/#{@album.id}'"
     end
@@ -157,5 +157,9 @@ class AlbumsController < ApplicationController
     end
     Resque.enqueue(Archive, rmzip_command)
     Resque.enqueue(Archive, zip_command)
+  end
+
+  def album_params
+    params.require(:album).permit(:name, :content, :photos_attributes, :uploaded_file, :revision, :password, :password_confirmation, :ncc, :directory_strings)
   end
 end

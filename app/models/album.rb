@@ -12,7 +12,6 @@
 
 require 'mime/types'
 class Album < ActiveRecord::Base
-  attr_accessible :name, :content, :photos_attributes, :uploaded_file, :revision, :password, :password_confirmation, :ncc, :directory_strings
   has_secure_password
   belongs_to :user
   before_save :create_remember_a_token
@@ -26,7 +25,7 @@ class Album < ActiveRecord::Base
   validates :directory_strings, presence: true
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true
-  
+
   def increment_revision
     tmp = self.revision.to_i + 1
     self.revision = tmp

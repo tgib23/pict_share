@@ -13,7 +13,7 @@ module AlbumSessionsHelper
   end
 
   def current_album
-    @current_album ||= Album.find_by_remember_a_token(cookies[:remember_a_token])
+    @current_album ||= Album.where(remember_a_token: cookies[:remember_a_token]).first
   end
 
   def current_album?(album)
