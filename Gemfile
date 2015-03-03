@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,6 +29,7 @@ gem 'coffee-rails'
 gem 'uglifier'
 
 gem 'jquery-fileupload-rails'
+gem 'therubyracer'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
