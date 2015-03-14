@@ -13,11 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20121014034924) do
 
-  create_table "albums", force: :cascade do |t|
+  create_table "albums", force: true do |t|
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "user_id"
     t.integer  "revision"
     t.string   "password_digest"
@@ -28,29 +28,29 @@ ActiveRecord::Schema.define(version: 20121014034924) do
 
   add_index "albums", ["remember_a_token"], name: "index_albums_on_remember_a_token"
 
-  create_table "photos", force: :cascade do |t|
+  create_table "photos", force: true do |t|
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.string   "photo_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "album_id"
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "requests", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "title"
     t.text     "contents"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
