@@ -146,11 +146,11 @@ class AlbumsController < ApplicationController
   def update_zip(album_id)
 
     @album = Album.find(album_id)
-    rmzip_command = "rm /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip"
+    rmzip_command = "rm /home/satoshi/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip"
     zip_command = "/usr/bin/zip -j "
-    zip_command += " /home/satoshi/rails/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip "
+    zip_command += " /home/satoshi/pict_share/public/system/pict_share/zips/#{@album.id}_#{@album.directory_strings}.zip "
     @album.photos.each do |photok|
-      zip_command += "/home/satoshi/rails/pict_share/public/system/pict_share/"
+      zip_command += "/home/satoshi/pict_share/public/system/pict_share/"
       zip_command += "#{@album.id}_#{@album.directory_strings}/photos/"
       zip_command += "#{photok.id}"
       zip_command += "/original/#{photok.id}_#{photok.photo.original_filename} "
