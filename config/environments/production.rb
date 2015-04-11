@@ -59,7 +59,7 @@ PicShare::Application.configure do
  	:address => 'smtp.gmail.com',
 	:port => 587,
 	:enable_starttls_auto => true,
-	:domain => 'pictcollect.dip.jp',
+	:domain => 'pictcollect.link',
 	:user_name => ENV["GMAIL_USERNAME"],
 	:password => ENV["GMAIL_PASSWORD"],
 	:authentication => 'plain',

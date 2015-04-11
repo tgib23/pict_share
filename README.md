@@ -9,4 +9,4 @@ pict_share uses modules below.
 - passenger & apache-upload-progress-module
 - bootstrap, etc.,
 
-pict_share is deployed @ http://pictcollect.dip.jp
+pict_share is deployed @ http://pictcollect.link

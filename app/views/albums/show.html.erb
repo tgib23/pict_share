@@ -20,7 +20,7 @@
   <% end %>
 </p>
 <% if !request.smart_phone? %>
- <%= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.directory_strings + '.zip', class: "btn btn-link" %>
+ <%= link_to 'ダウンロード', 'http://pictcollect.link/system/pict_share/zips/' + @album.id.to_s + '_' + @album.directory_strings + '.zip', class: "btn btn-link" %>
 <% end %>
 <% if !current_user.nil? && @album.user_id == current_user.id %>
   <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
@@ -32,7 +32,7 @@
 <ul class="snsb">
 
 <li>
-<% facebook_link = "http://pictcollect.dip.jp/albums/" + @album.id.to_s %>
+<% facebook_link = "http://pictcollect.link/albums/" + @album.id.to_s %>
 <div class="fb-like" align="right" data-href="<%= facebook_link %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div>
 </li>
 <li>
