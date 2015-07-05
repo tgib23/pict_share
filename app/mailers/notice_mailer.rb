@@ -1,7 +1,7 @@
 #coding: utf-8
 
 class NoticeMailer < ActionMailer::Base
-  default from: "satoshi@pictcollect.dip.jp"
+  default from: "satoshi@pictcollect.link"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

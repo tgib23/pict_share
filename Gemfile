@@ -5,14 +5,16 @@ gem 'rails', '4.1.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3', group: :development
+gem 'pg', group: :production
 gem 'paperclip'
 gem 'mime-types'
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '2.3.2.2'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'ssl_requirement'
 
 gem 'jpmobile'
 gem 'actionpack'
@@ -32,7 +34,7 @@ gem 'jquery-fileupload-rails'
 gem 'therubyracer'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

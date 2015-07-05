@@ -13,10 +13,10 @@ PicShare::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  config.assets.js_compressor = true
+  config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -59,7 +59,7 @@ PicShare::Application.configure do
  	:address => 'smtp.gmail.com',
 	:port => 587,
 	:enable_starttls_auto => true,
-	:domain => 'pictcollect.dip.jp',
+	:domain => 'pictcollect.link',
 	:user_name => ENV["GMAIL_USERNAME"],
 	:password => ENV["GMAIL_PASSWORD"],
 	:authentication => 'plain',

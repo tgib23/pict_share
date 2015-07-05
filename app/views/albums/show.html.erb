@@ -20,19 +20,17 @@
   <% end %>
 </p>
 <% if !request.smart_phone? %>
- <%= link_to 'ダウンロード', 'http://pictcollect.dip.jp/system/pict_share/zips/' + @album.id.to_s + '_' + @album.directory_strings + '.zip', class: "btn btn-link" %>
+ <%= link_to 'ダウンロード', 'http://pictcollect.link/system/pict_share/zips/' + @album.id.to_s + '_' + @album.directory_strings + '.zip', class: "btn btn-link" %>
 <% end %>
 <% if !current_user.nil? && @album.user_id == current_user.id %>
   <%= link_to 'Edit', edit_album_path(@album), class: "btn btn-link" %> 
 <% end %>
 
-
-
 <br />
 <ul class="snsb">
 
 <li>
-<% facebook_link = "http://pictcollect.dip.jp/albums/" + @album.id.to_s %>
+<% facebook_link = "http://pictcollect.link/albums/" + @album.id.to_s %>
 <div class="fb-like" align="right" data-href="<%= facebook_link %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div>
 </li>
 <li>
@@ -57,10 +55,6 @@
 <br /><br /><br /><br /><br />
 
 <style type="text/css">
-  .bar {
-    width: 300px;
-  }
-  
   #progress {
     background: #eee;
     border: 1px solid #222;
@@ -75,12 +69,29 @@
 
 <% if (!current_user.nil? && current_user.id == @album.user_id) || @album.ncc == 0 || @album.ncc == 2 %>
 
-  <%= form_for @album, :url => {:action => 'add_photos'}, :remote => true, class: "btn btn-primary" do |f| %>
+<%= form_for @album, :url => {:action => 'add_photos'}, :html => {:multipart => true, :id => "image-new-form"}, :remote => true, class: "btn btn-primary" do |f| %>
     <%= file_field_tag('album_photos_photo', multiple: true, name: "files[]") %>
     <div class="actions">
     <output id="submit_button"></output>
-    <output id="bar"></output>
+
+	<!-- display upload progress -->
+    <div class="hide" id="image-new-progress-message">
+      画像の登録中です...
+      <div class="progress progress-striped active">
+        <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="alert alert-dismissable alert-danger hide" id="image-new-error-message">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      画像の登録に失敗しました。
+    </div>
+    <div class="alert alert-dismissable alert-success hide" id="image-new-success-message">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      画像の登録に成功しました。<%= link_to "ページを更新します。" %>
+    </div>
+
     <output id="list"></output>
+
     </div>
   <% end %>
 
@@ -101,7 +112,6 @@
                   f.lastModifiedDate.toLocaleDateString(), '</li>'
                  );
     }
-    document.getElementById('bar').innerHTML = '<div id="uploading"><div id="progress" class="bar"><div id="progressbar">&nbsp;</div><div id="percents"></div></div></div>';
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
   }
   document.getElementById('album_photos_photo').addEventListener('change', handleFileSelect, false);
@@ -111,14 +121,33 @@ $(function() {
     /* scripts locations for safari */
     jqueryPath: "/assets/jquery.js",
     uploadProgressPath: "/assets/jquery.uploadProgress.js",
-    /* function called each time bar is updated */
-    uploading: function(upload) {$('#percents').html(upload.percents+'%');},
-    /* selector or element that will be updated */
-    progressBar: "#progressbar",
-    /* progress reports url */
-    progressUrl: "/progress",
-    /* how often will bar be updated */
-    interval: 20
     });
 });
+
+$("#image-new-form").on("ajax:error", function() {
+  $("#image-new-error-message").removeClass('hide').show();
+  $("#image-new-success-message").hide();
+  $("#image-new-progress-message").hide();
+}).on("ajax:success", function() {
+  $("#image-new-error-message").hide();
+  $("#image-new-success-message").removeClass('hide').show();
+  $("#image-new-progress-message").hide();
+}).on("ajax:before", function() {
+  $("#image-new-error-message").hide();
+  $("#image-new-success-message").hide();
+  $("#image-new-progress-message").removeClass('hide').show();
+  setTimeout(function(){
+    var currentPercentage = 0;
+    var progress = setInterval(function() {
+        if (currentPercentage == 100) {
+            clearInterval(progress);
+        } else {
+            currentPercentage += 5;
+            $("#image-new-progress-message .bar").css('width', (currentPercentage) + '%').attr('aria-valuenow', currentPercentage);
+        }
+        $("#image-new-progress-message .bar").text((currentPercentage) + '%');
+    }, 500);
+ }, 1000);
+});
+
 </script>
