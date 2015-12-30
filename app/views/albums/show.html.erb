@@ -178,19 +178,22 @@ console.log('modal-overlay');
           centeringModalSyncer() ;
 console.log('centering');          
           //コンテンツをフェードインする
-          $( "#modal-content" ).fadeIn( "slow" ) ;
+  $( "#modal-content" ).fadeIn( "slow" ).delay(3000).fadeOut("slow", function() {
+  console.log('modal-overlay fadeout');
+  $("#modal-overlay").fadeOut("slow").remove();
+  });
 console.log('fadein');          
           //[#modal-overlay]、または[#modal-close]をクリックしたら…
-          $( "#modal-overlay,#modal-close" ).unbind().click( function(){
-console.log('close click detected');          
-              //[#modal-content]と[#modal-overlay]をフェードアウトした後に…
-              $( "#modal-content,#modal-overlay" ).fadeOut( "slow" , function(){
-                  //[#modal-overlay]を削除する
-                  $('#modal-overlay').remove() ;
-              } ) ;
-
-          } ) ;
-
+//          $( "#modal-overlay,#modal-close" ).unbind().click( function(){
+//console.log('close click detected');          
+//              //[#modal-content]と[#modal-overlay]をフェードアウトした後に…
+//              $( "#modal-content,#modal-overlay" ).fadeOut( "slow" , function(){
+//                  //[#modal-overlay]を削除する
+//                  $('#modal-overlay').remove() ;
+//              } ) ;
+//
+//          } ) ;
+console.log('exit');
       } ) ;
 
   //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
