@@ -112,6 +112,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rake_shared_context (0.2.1)
+    rb-readline (0.5.5)
     redis (3.2.1)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
@@ -202,6 +203,7 @@ DEPENDENCIES
   pg
   rails (= 4.1.1)
   rake_shared_context
+  rb-readline
   remotipart
   resque
   rspec
